@@ -1,0 +1,83 @@
+water
+---
+
+```{r, warning=FALSE, message=FALSE, fig.width=8, fig.height=12}
+options(width = 200)
+library(readxl)
+data_1 <- read_excel("data_final_230304.xlsx",
+                     sheet = "Water Quality", 
+                     range = "AZ7:BF50")
+
+data_1 <- as.data.frame(data_1)
+
+data_1
+
+data_1$day <- 1:dim(data_1)[1]
+
+oldpar <- par(no.readonly=TRUE)
+
+par(mfrow = c(6, 1), mar = c(5, 5, 2, 1.5))
+
+plot(pH ~ day,
+     na.omit(data_1[, c("pH", "day")]),
+     type = "l", col = 2, las = 1, lwd = 2,
+     xaxs = "i", yaxs = "i",
+     ylim = c(0, 10),
+     xlim = c(data_1$day[1], data_1$day[length(data_1$day)]),
+     xlab = "Days", ylab = "pH",
+     main = "pH"
+     )
+
+plot(total_ammonia_nitrogen ~ day,
+     na.omit(data_1[, c("total_ammonia_nitrogen", "day")]),
+     type = "l", col = 3, las = 1, lwd = 2,
+     xaxs = "i", yaxs = "i",
+     ylim = c(0, 0.3),
+     xlim = c(data_1$day[1], data_1$day[length(data_1$day)]),
+     xlab = "Days", ylab = "Total ammonia nitrogen (ppm)",
+     main = "Total ammonia nitrogen (ppm)"
+)
+
+plot(nitrite ~ day,
+     na.omit(data_1[, c("nitrite", "day")]),
+     type = "l", col = 4, las = 1, lwd = 2,
+     xaxs = "i", yaxs = "i",
+     ylim = c(0, 0.2),
+     xlim = c(data_1$day[1], data_1$day[length(data_1$day)]),
+     xlab = "Days", ylab = "Nitrite (ppm)",
+     main = "Nitrite (ppm)"
+)
+
+plot(dissolved_oxygen ~ day,
+     na.omit(data_1[, c("dissolved_oxygen", "day")]),
+     type = "l", col = 5, las = 1, lwd = 2,
+     xaxs = "i", yaxs = "i",
+     ylim = c(0, 9),
+     xlim = c(data_1$day[1], data_1$day[length(data_1$day)]),
+     xlab = "Days", ylab = "Dissolved oxygen (ppm)",
+     main = "Dissolved oxygen (ppm)"
+)
+
+plot(temperature ~ day,
+     na.omit(data_1[, c("temperature", "day")]),
+     type = "l", col = 6, las = 1, lwd = 2,
+     xaxs = "i", yaxs = "i",
+     ylim = c(0, 35),
+     xlim = c(data_1$day[1], data_1$day[length(data_1$day)]),
+     xlab = "Days", ylab = "Temperature (°C)",
+     main = "Temperature (°C)"
+)
+
+plot(salinity ~ day,
+     na.omit(data_1[, c("salinity", "day")]),
+     type = "l", col = 7, las = 1, lwd = 2,
+     xaxs = "i", yaxs = "i",
+     ylim = c(0, 8),
+     xlim = c(data_1$day[1], data_1$day[length(data_1$day)]),
+     xlab = "Days", ylab = "Salinity (ppt)",
+     main = "Salinity (ppt)"
+)
+
+par(oldpar)
+```
+
