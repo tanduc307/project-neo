@@ -1,0 +1,177 @@
+---
+title: Hướng dẫn tạo ảnh GIF trong R
+author: Duc Nguyen | Chuyên đào tạo kỹ năng R | `www.tuhocr.com`
+date: Mar 16, 2023
+output:
+  html_document:
+    highlight: pygments
+    # css: doc.css
+---
+
+### **Code mẫu**
+
+```{r, message=FALSE, warning=FALSE}
+# rice_topten <- read.delim("rice.txt")
+
+load("rice-all-flag.RData")
+
+rice_topten$area <-reorder(rice_topten$area, rice_topten$production, decreasing = TRUE)
+
+options(scipen = 2, digits = 2)
+
+library(stringi)
+library(gganimate)
+library(magick)
+library(gifski)
+```
+
+```{r, message=FALSE, warning=FALSE}
+p1 <- ggplot(rice_topten, aes(
+  x = area, y = production/1000000,
+  size = area_harvested/1000000,
+  # colour = area,
+  fill = area,
+  label = production/1000000
+)) +
+  geom_point(alpha = 0.5, aes(color = area),
+             shape = 21,
+             color = "black"
+  ) +
+  # geom_text(label = as.character(round(rice_topten$production/1000000, digits = 1)),
+  #           nudge_x = 0, nudge_y = 19,
+  #   check_overlap = TRUE,
+  #   size = 6, fontface = "bold"
+  # ) +
+  scale_size(range = c(5, 20), name = "Diện tích canh tác (triệu ha)",
+             guide = guide_legend(direction = "horizontal", title.position = "top",
+                                  label.position="top", label.hjust = 0.5, label.vjust = 0.5,
+                                  label.theme = element_text(angle = 0))) + 
+  guides(fill = "none") +
+  scale_y_continuous(expand = c(0, 0), limits = c(0, 250)) +
+  theme_classic() +
+  ylab("Sản lượng thu hoạch (triệu tấn)") +
+  xlab(NULL) +
+  
+  theme(axis.title.y = element_text(
+    face = "bold", size = 15,
+    margin = margin(t = 1, r = 10, b = 1, l = 10)
+  )) +
+  
+  theme(
+    axis.text.x = element_text(
+      face = "bold", color = "#993333",
+      size = 15, margin = margin(t = 5, r = 0, b = 5, l = 0),
+      angle = 45, vjust = 1, hjust = 1
+    ),
+    axis.text.y = element_text(
+      face = "bold", color = "#993333",
+      size = 15
+    )
+  ) +
+  labs(caption = c("Nguồn: FAOSTAT [crop dataset]", "Đồ thị: Duc Nguyen | tuhocr.com")) +
+  
+  theme(
+    plot.title = element_text(size = 17, 
+                              face = "bold", 
+                              hjust = 0.5, vjust = -20, margin = margin(t = 5, r = 0, b = 0, l = 0),
+                              lineheight = 1.3),
+    plot.caption = element_text(size = 14, face = "bold", hjust = c(0, 1), margin = margin(t = 0, r = 0, b = 5, l = 0))
+  ) +
+  
+  theme(
+    panel.background = element_rect(fill = "white"),
+    plot.margin = margin(t = 0, r = 20, b = 20, l = 15),
+    plot.background = element_rect(fill = "grey90", colour = "black", linewidth = 1)
+  ) +
+  
+  theme(legend.position = c(0.60, 0.6), legend.direction = "horizontal",
+        legend.title = element_text(size = 16, face = "bold"),
+        legend.background = element_blank(),
+        legend.justification = c("left", "top"),
+        # legend.box.just = "right",
+        legend.margin = margin(t = 0, r = 0, b = 0, l = 0),
+        legend.spacing.x = unit(0.5, "lines"),
+        legend.spacing.y = unit(0.4, "lines"),
+        legend.text = element_text(size = 16, face = "bold")) +
+  geom_hline(yintercept = 50, colour = "#148c34", lwd = 1, lty = 2) + 
+    annotate(
+      geom = "text", x = 8, y = 57,
+      label = 'atop(bold("Ngưỡng 50 triệu tấn/năm"))',
+      color = "blue", size = 5, parse = TRUE
+    ) 
+```
+
+
+```{r, message=FALSE, warning=FALSE, eval=FALSE}
+p2 <- p1 + labs(title = "Top 10 quốc gia sản xuất lúa gạo trên thế giới giai đoạn 1960–2021 \nNăm: {frame_time}") +
+  # transition_time(year) +
+  transition_time(year) +
+  # shadow_trail(distance = 0.05,
+  #              alpha = 0.1,
+  #              shape = 21) +
+  shadow_wake(wake_length = 0.2, size = 3, alpha = 0.05, colour = "grey97") +
+  ease_aes('linear')
+
+animate(p2, fps = 8,
+        # nframes = 130,
+        detail = 7,
+        width = 800, height = 600)
+```
+
+`shadow_wake(wake_length = 0.2, size = 3, alpha = 0.05, colour = NULL) `
+
+```{r, message=FALSE, warning=FALSE, eval=FALSE}
+p2 <- p1 + labs(title = "Top 10 quốc gia sản xuất lúa gạo trên thế giới giai đoạn 1960–2021 \nNăm: {frame_time}") +
+  # transition_time(year) +
+  transition_time(year) +
+  # shadow_trail(distance = 0.05,
+  #              alpha = 0.1,
+  #              shape = 21) +
+  shadow_wake(wake_length = 0.2, size = 3, alpha = 0.05, colour = NULL) +
+  ease_aes('linear')
+
+animate(p2, fps = 8,
+        # nframes = 130,
+        detail = 7,
+        width = 800, height = 600)
+```
+
+`shadow_wake(wake_length = 1, size = 3, alpha = 0.05, colour = NULL)`
+
+```{r}
+mycol <- rgb(255, 255, 255, max = 255, alpha = 0, names = "blue50")
+```
+
+
+```{r, message=FALSE, warning=FALSE, eval=TRUE}
+p2 <- p1 + labs(title = "Top 10 quốc gia sản xuất lúa gạo trên thế giới giai đoạn 1960–2021 \nNăm: {frame_time}") +
+  # transition_time(year) +
+  transition_time(year) +
+  # shadow_trail(distance = 0.05,
+  #              alpha = 0.1,
+  #              shape = 21) +
+  shadow_wake(wake_length = 0.1, size = 3, alpha = 0, colour = mycol) +
+  ease_aes('linear')
+
+animate(p2, fps = 15,
+        # nframes = 130,
+        detail = 10,
+        width = 800, height = 600)
+```
+
+```{r}
+tapply(rice_topten$production, rice_topten$year, length)
+head(rice_topten, n = 30)
+```
+
+`https://ezgif.com/effects`
+
+### **Sơ kết**
+
+Trên đây là hướng dẫn tạo bảng xếp hạng trong R. Để học R bài bản từ A đến Z, thân mời Bạn tham gia <span style="color: green">**khóa học "HDSD R để xử lý dữ liệu"**<span style="color: blue"> **để có nền tảng vững chắc về R nhằm tự tay làm các câu chuyện dữ liệu của riêng mình!**
+
+<span style="color: blue">**ĐĂNG KÝ NGAY: `https://www.tuhocr.com/register`**</span>
+
+<mark>**Hướng dẫn cài đặt package `tuhocr` `https://tuhocr.github.io/`**</mark>
+
+<img src="E:/tuhocr/tuhocr.png"  width=20% height=20%>

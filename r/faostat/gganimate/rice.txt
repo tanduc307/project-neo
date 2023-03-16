@@ -1,0 +1,583 @@
+area	year	production	area_harvested
+Bangladesh	2020	54.9	11.4
+Bangladesh	2019	54.6	11.5
+Bangladesh	2018	54.4	11.5
+Bangladesh	2017	54.1	11.6
+Bangladesh	2016	50.5	11.0
+Bangladesh	2015	51.8	11.4
+Bangladesh	2014	51.8	11.4
+Bangladesh	2013	51.5	11.4
+Bangladesh	2012	50.5	11.4
+Bangladesh	2011	50.6	11.5
+Bangladesh	2010	50.1	11.5
+Bangladesh	2009	48.1	11.4
+Bangladesh	2008	46.7	11.3
+Bangladesh	2007	43.2	10.6
+Bangladesh	2006	40.8	10.6
+Bangladesh	2005	39.8	10.5
+Bangladesh	2004	36.2	10.2
+Bangladesh	2003	38.4	10.7
+Bangladesh	2002	37.6	10.8
+Bangladesh	2001	36.3	10.7
+Bangladesh	2000	37.6	10.8
+Bangladesh	1999	34.4	10.7
+Bangladesh	1998	29.7	10.1
+Bangladesh	1997	28.2	10.3
+Bangladesh	1996	28.2	10.2
+Bangladesh	1995	26.4	10.0
+Bangladesh	1994	25.1	9.9
+Bangladesh	1993	26.9	9.9
+Bangladesh	1992	27.4	10.2
+Bangladesh	1991	27.2	10.2
+Bangladesh	1990	26.8	10.4
+Bangladesh	1989	26.8	10.5
+Bangladesh	1988	23.3	10.2
+Bangladesh	1987	23.1	10.3
+Bangladesh	1986	23.1	10.6
+Bangladesh	1985	22.6	10.4
+Bangladesh	1984	21.9	10.2
+Bangladesh	1983	21.8	9.7
+Bangladesh	1982	21.3	10.6
+Bangladesh	1981	20.4	10.5
+Bangladesh	1980	20.8	10.3
+Bangladesh	1979	19.1	10.2
+Bangladesh	1978	19.6	10.1
+Bangladesh	1977	19.5	10.0
+Bangladesh	1976	17.6	9.9
+Bangladesh	1975	19.1	10.3
+Bangladesh	1974	16.9	9.8
+Bangladesh	1973	17.9	9.9
+Bangladesh	1972	15.1	9.6
+Bangladesh	1971	14.9	9.3
+Bangladesh	1970	16.7	9.9
+Bangladesh	1969	18.0	10.3
+Bangladesh	1968	17.0	9.7
+Bangladesh	1967	16.8	9.9
+Bangladesh	1966	14.4	9.1
+Bangladesh	1965	15.8	9.4
+Bangladesh	1964	15.8	9.2
+Bangladesh	1963	15.9	9.0
+Bangladesh	1962	13.3	8.7
+Bangladesh	1961	14.4	8.5
+Brazil	2021	11.7	1.7
+Brazil	2020	11.1	1.7
+Brazil	2019	10.4	1.7
+Brazil	2018	11.8	1.9
+Brazil	2017	12.5	2.0
+Brazil	2016	10.6	1.9
+Brazil	2015	12.3	2.1
+Brazil	2014	12.2	2.3
+Brazil	2013	11.8	2.4
+Brazil	2012	11.5	2.4
+Brazil	2011	13.5	2.8
+Brazil	2010	11.2	2.7
+Brazil	2009	12.7	2.9
+Brazil	2008	12.1	2.9
+Brazil	2007	11.1	2.9
+Brazil	2006	11.5	3.0
+Brazil	2005	13.2	3.9
+Brazil	2004	13.3	3.7
+Brazil	2003	10.3	3.2
+Brazil	2002	10.4	3.1
+Brazil	2001	10.2	3.1
+Brazil	2000	11.1	3.7
+Brazil	1999	11.7	3.8
+Brazil	1998	7.7	3.1
+Brazil	1997	8.4	3.1
+Brazil	1996	8.7	3.3
+Brazil	1995	11.2	4.4
+Brazil	1994	10.5	4.4
+Brazil	1993	10.1	4.4
+Brazil	1992	10.0	4.7
+Brazil	1991	9.5	4.1
+Brazil	1990	7.4	3.9
+Brazil	1989	11.0	5.3
+Brazil	1988	11.8	6.0
+Brazil	1987	10.4	6.0
+Brazil	1986	10.4	5.6
+Brazil	1985	9.0	4.8
+Brazil	1984	9.0	5.4
+Brazil	1983	7.7	5.1
+Brazil	1982	9.7	6.0
+Brazil	1981	8.2	6.1
+Brazil	1980	9.8	6.2
+Brazil	1979	7.6	5.5
+Brazil	1978	7.3	5.6
+Brazil	1977	9.0	6.0
+Brazil	1976	9.8	6.7
+Brazil	1975	7.8	5.3
+Brazil	1974	6.8	4.7
+Brazil	1973	7.2	4.8
+Brazil	1972	6.8	4.5
+Brazil	1971	6.6	4.8
+Brazil	1970	7.6	5.0
+Brazil	1969	6.4	4.6
+Brazil	1968	6.7	4.5
+Brazil	1967	6.8	4.3
+Brazil	1966	5.8	4.0
+Brazil	1965	7.6	4.6
+Brazil	1964	6.3	4.2
+Brazil	1963	5.7	3.7
+Brazil	1962	5.6	3.3
+Brazil	1961	5.4	3.2
+Trung Quốc	2021	212.8	29.9
+Trung Quốc	2020	211.9	30.1
+Trung Quốc	2019	209.6	29.7
+Trung Quốc	2018	212.1	30.2
+Trung Quốc	2017	212.7	30.7
+Trung Quốc	2016	211.1	30.7
+Trung Quốc	2015	212.1	30.8
+Trung Quốc	2014	206.5	30.3
+Trung Quốc	2013	203.6	30.3
+Trung Quốc	2012	204.2	30.1
+Trung Quốc	2011	201.0	30.1
+Trung Quốc	2010	195.8	29.9
+Trung Quốc	2009	195.1	29.6
+Trung Quốc	2008	191.9	29.2
+Trung Quốc	2007	186.0	28.9
+Trung Quốc	2006	181.7	28.9
+Trung Quốc	2005	180.6	28.8
+Trung Quốc	2004	179.1	28.4
+Trung Quốc	2003	160.7	26.5
+Trung Quốc	2002	174.5	28.2
+Trung Quốc	2001	177.6	28.8
+Trung Quốc	2000	187.9	30.0
+Trung Quốc	1999	198.5	31.3
+Trung Quốc	1998	198.7	31.2
+Trung Quốc	1997	200.7	31.8
+Trung Quốc	1996	195.1	31.4
+Trung Quốc	1995	185.2	30.7
+Trung Quốc	1994	175.9	30.2
+Trung Quốc	1993	177.5	30.4
+Trung Quốc	1992	186.2	32.1
+Trung Quốc	1991	183.8	32.6
+Trung Quốc	1990	189.3	33.1
+Trung Quốc	1989	180.1	32.7
+Trung Quốc	1988	169.1	32.0
+Trung Quốc	1987	174.3	32.2
+Trung Quốc	1986	172.2	32.3
+Trung Quốc	1985	168.6	32.1
+Trung Quốc	1984	178.3	33.2
+Trung Quốc	1983	168.9	33.1
+Trung Quốc	1982	161.6	33.0
+Trung Quốc	1981	144.0	33.3
+Trung Quốc	1980	139.9	33.8
+Trung Quốc	1979	143.8	33.8
+Trung Quốc	1978	136.9	34.4
+Trung Quốc	1977	128.6	35.5
+Trung Quốc	1976	125.8	36.2
+Trung Quốc	1975	125.6	35.7
+Trung Quốc	1974	123.9	35.5
+Trung Quốc	1973	121.7	35.1
+Trung Quốc	1972	113.4	35.1
+Trung Quốc	1971	115.2	34.9
+Trung Quốc	1970	110.0	32.3
+Trung Quốc	1969	95.1	30.4
+Trung Quốc	1968	94.5	29.9
+Trung Quốc	1967	93.7	30.4
+Trung Quốc	1966	95.4	30.5
+Trung Quốc	1965	87.7	29.8
+Trung Quốc	1964	83.0	29.6
+Trung Quốc	1963	73.8	27.7
+Trung Quốc	1962	63.0	26.9
+Trung Quốc	1961	53.6	26.3
+Ấn Độ	2021	195.4	46.4
+Ấn Độ	2020	186.5	45.1
+Ấn Độ	2019	178.3	43.7
+Ấn Độ	2018	174.7	44.2
+Ấn Độ	2017	169.1	43.8
+Ấn Độ	2016	163.7	43.2
+Ấn Độ	2015	156.5	43.4
+Ấn Độ	2014	157.2	44.1
+Ấn Độ	2013	159.2	44.1
+Ấn Độ	2012	157.8	42.8
+Ấn Độ	2011	157.9	44.0
+Ấn Độ	2010	144.0	42.9
+Ấn Độ	2009	135.7	41.9
+Ấn Độ	2008	148.0	45.5
+Ấn Độ	2007	144.6	43.9
+Ấn Độ	2006	139.1	43.8
+Ấn Độ	2005	137.7	43.7
+Ấn Độ	2004	124.7	41.9
+Ấn Độ	2003	132.8	42.6
+Ấn Độ	2002	107.7	41.2
+Ấn Độ	2001	139.9	44.9
+Ấn Độ	2000	127.5	44.7
+Ấn Độ	1999	134.5	45.2
+Ấn Độ	1998	129.1	44.8
+Ấn Độ	1997	123.7	43.5
+Ấn Độ	1996	122.5	43.4
+Ấn Độ	1995	115.4	42.8
+Ấn Độ	1994	122.6	42.8
+Ấn Độ	1993	120.4	42.5
+Ấn Độ	1992	109.0	41.8
+Ấn Độ	1991	112.0	42.6
+Ấn Độ	1990	111.5	42.7
+Ấn Độ	1989	110.3	42.2
+Ấn Độ	1988	106.4	41.7
+Ấn Độ	1987	85.3	38.8
+Ấn Độ	1986	90.8	41.2
+Ấn Độ	1985	95.8	41.1
+Ấn Độ	1984	87.6	41.2
+Ấn Độ	1983	90.0	41.2
+Ấn Độ	1982	70.8	38.3
+Ấn Độ	1981	79.9	40.7
+Ấn Độ	1980	80.3	40.2
+Ấn Độ	1979	63.5	39.4
+Ấn Độ	1978	80.6	40.5
+Ấn Độ	1977	79.0	40.3
+Ấn Độ	1976	63.1	38.5
+Ấn Độ	1975	73.4	39.5
+Ấn Độ	1974	59.7	37.9
+Ấn Độ	1973	66.1	38.3
+Ấn Độ	1972	58.9	36.7
+Ấn Độ	1971	64.6	37.8
+Ấn Độ	1970	63.3	37.6
+Ấn Độ	1969	60.6	37.7
+Ấn Độ	1968	59.6	37.0
+Ấn Độ	1967	56.4	36.4
+Ấn Độ	1966	45.7	35.3
+Ấn Độ	1965	45.9	35.5
+Ấn Độ	1964	59.0	36.5
+Ấn Độ	1963	55.5	35.8
+Ấn Độ	1962	49.8	35.7
+Ấn Độ	1961	53.5	34.7
+Indonesia	2021	54.4	10.4
+Indonesia	2020	54.6	10.7
+Indonesia	2019	54.6	10.7
+Indonesia	2018	59.2	11.4
+Indonesia	2006	54.5	11.8
+Indonesia	2005	54.2	11.8
+Indonesia	2004	54.1	11.9
+Indonesia	2003	52.1	11.5
+Indonesia	2002	51.5	11.5
+Indonesia	2001	50.5	11.5
+Indonesia	2000	51.9	11.8
+Indonesia	1999	50.9	12.0
+Indonesia	1998	49.2	11.7
+Indonesia	1997	49.4	11.1
+Indonesia	1996	51.1	11.6
+Indonesia	1995	49.7	11.4
+Indonesia	1994	46.6	10.7
+Indonesia	1993	48.2	11.0
+Indonesia	1992	48.2	11.1
+Indonesia	1991	44.7	10.3
+Indonesia	1990	45.2	10.5
+Indonesia	1989	44.7	10.5
+Indonesia	1988	41.7	10.1
+Indonesia	1987	40.1	9.9
+Indonesia	1986	39.7	10.0
+Indonesia	1985	39.0	9.9
+Indonesia	1984	38.1	9.8
+Indonesia	1983	35.3	9.2
+Indonesia	1982	33.6	9.0
+Indonesia	1981	32.8	9.4
+Indonesia	1980	29.7	9.0
+Indonesia	1979	26.3	8.8
+Indonesia	1978	25.8	8.9
+Indonesia	1977	23.3	8.4
+Indonesia	1976	23.3	8.4
+Indonesia	1975	22.3	8.5
+Indonesia	1974	22.5	8.5
+Indonesia	1973	21.5	8.4
+Indonesia	1972	19.4	7.9
+Indonesia	1971	20.2	8.3
+Indonesia	1970	19.3	8.1
+Indonesia	1969	18.0	8.0
+Indonesia	1968	17.2	8.0
+Indonesia	1967	13.2	7.5
+Indonesia	1966	13.7	7.7
+Indonesia	1965	13.0	7.3
+Indonesia	1964	12.3	7.0
+Indonesia	1963	11.6	6.7
+Indonesia	1962	13.0	7.3
+Indonesia	1961	12.1	6.9
+Nhật Bản	2021	10.5	1.4
+Nhật Bản	2020	10.5	1.5
+Nhật Bản	2019	10.5	1.5
+Nhật Bản	2018	10.6	1.5
+Nhật Bản	2009	10.6	1.6
+Nhật Bản	2008	11.0	1.6
+Nhật Bản	2007	10.9	1.7
+Nhật Bản	2006	10.7	1.7
+Nhật Bản	2005	11.3	1.7
+Nhật Bản	2004	10.9	1.7
+Nhật Bản	2003	9.7	1.7
+Nhật Bản	2002	11.1	1.7
+Nhật Bản	2001	11.3	1.7
+Nhật Bản	2000	11.9	1.8
+Nhật Bản	1999	11.5	1.8
+Nhật Bản	1998	11.2	1.8
+Nhật Bản	1997	12.5	2.0
+Nhật Bản	1996	12.9	2.0
+Nhật Bản	1995	13.4	2.1
+Nhật Bản	1994	15.0	2.2
+Nhật Bản	1993	9.8	2.1
+Nhật Bản	1992	13.2	2.1
+Nhật Bản	1991	12.0	2.0
+Nhật Bản	1990	13.1	2.1
+Nhật Bản	1989	12.9	2.1
+Nhật Bản	1988	12.4	2.1
+Nhật Bản	1987	13.3	2.1
+Nhật Bản	1986	14.6	2.3
+Nhật Bản	1985	14.6	2.3
+Nhật Bản	1984	14.8	2.3
+Nhật Bản	1983	13.0	2.3
+Nhật Bản	1982	12.8	2.3
+Nhật Bản	1981	12.8	2.3
+Nhật Bản	1980	12.2	2.4
+Nhật Bản	1979	14.9	2.5
+Nhật Bản	1978	15.7	2.5
+Nhật Bản	1977	17.0	2.8
+Nhật Bản	1976	15.2	2.8
+Nhật Bản	1975	17.1	2.8
+Nhật Bản	1974	16.0	2.7
+Nhật Bản	1973	15.8	2.6
+Nhật Bản	1972	15.5	2.6
+Nhật Bản	1971	14.1	2.7
+Nhật Bản	1970	16.5	2.9
+Nhật Bản	1969	18.2	3.3
+Nhật Bản	1968	18.8	3.3
+Nhật Bản	1967	18.8	3.3
+Nhật Bản	1966	16.6	3.3
+Nhật Bản	1965	16.1	3.3
+Nhật Bản	1964	16.4	3.3
+Nhật Bản	1963	16.6	3.3
+Nhật Bản	1962	16.9	3.3
+Nhật Bản	1961	16.2	3.3
+Myanmar	2020	26.0	6.8
+Myanmar	2019	26.3	6.9
+Myanmar	2018	27.6	7.1
+Myanmar	2017	26.5	6.9
+Myanmar	2016	25.7	6.7
+Myanmar	2015	26.2	6.8
+Myanmar	2014	26.4	6.9
+Myanmar	2013	26.4	7.0
+Myanmar	2012	26.2	7.0
+Myanmar	2011	28.6	7.6
+Myanmar	2010	32.1	8.0
+Myanmar	2009	32.2	8.1
+Myanmar	2008	32.1	8.1
+Myanmar	2007	31.0	8.0
+Myanmar	2006	30.4	8.1
+Myanmar	2005	27.2	7.4
+Myanmar	2004	24.4	6.8
+Myanmar	2003	22.8	6.5
+Myanmar	2002	21.5	6.4
+Myanmar	2001	21.6	6.4
+Myanmar	2000	21.0	6.3
+Myanmar	1999	20.1	6.2
+Myanmar	1998	16.8	5.5
+Myanmar	1997	16.4	5.4
+Myanmar	1996	17.4	5.8
+Myanmar	1995	17.7	6.0
+Myanmar	1994	17.9	5.7
+Myanmar	1993	16.5	5.5
+Myanmar	1992	14.6	5.1
+Myanmar	1991	13.0	4.6
+Myanmar	1990	14.0	4.8
+Myanmar	1989	13.8	4.7
+Myanmar	1988	13.2	4.5
+Myanmar	1987	13.6	4.5
+Myanmar	1986	14.1	4.7
+Myanmar	1985	14.3	4.7
+Myanmar	1984	14.3	4.6
+Myanmar	1983	14.3	4.7
+Myanmar	1982	14.4	4.6
+Myanmar	1981	14.1	4.8
+Myanmar	1980	13.3	4.8
+Myanmar	1979	10.4	4.4
+Myanmar	1978	10.5	5.0
+Myanmar	1977	9.5	4.9
+Myanmar	1976	9.3	4.9
+Myanmar	1975	9.2	5.0
+Myanmar	1974	8.6	4.9
+Myanmar	1973	8.6	4.9
+Myanmar	1972	7.4	4.5
+Myanmar	1971	8.2	4.8
+Myanmar	1970	8.2	4.8
+Myanmar	1969	8.0	4.7
+Myanmar	1968	8.0	4.8
+Myanmar	1967	7.8	4.7
+Myanmar	1966	6.6	4.5
+Myanmar	1965	8.1	4.8
+Myanmar	1964	8.5	5.0
+Myanmar	1963	7.8	4.9
+Myanmar	1962	7.7	4.7
+Myanmar	1961	6.8	4.3
+Philippines	2021	20.0	4.8
+Philippines	2020	19.3	4.7
+Philippines	2019	18.8	4.7
+Philippines	2018	19.1	4.8
+Philippines	2017	19.3	4.8
+Philippines	2016	17.6	4.6
+Philippines	2015	18.1	4.7
+Philippines	2014	19.0	4.7
+Philippines	2013	18.4	4.7
+Philippines	2012	18.0	4.7
+Philippines	2011	16.7	4.5
+Philippines	2010	15.8	4.4
+Philippines	2009	16.3	4.5
+Philippines	2008	16.8	4.5
+Philippines	2007	16.2	4.3
+Philippines	2006	15.3	4.2
+Philippines	2005	14.6	4.1
+Philippines	2004	14.5	4.1
+Philippines	2003	13.5	4.0
+Philippines	2002	13.3	4.0
+Philippines	2001	13.0	4.1
+Philippines	2000	12.4	4.0
+Philippines	1999	11.8	4.0
+Philippines	1998	8.6	3.2
+Philippines	1997	11.3	3.8
+Philippines	1996	11.3	4.0
+Philippines	1995	10.5	3.8
+Philippines	1994	10.5	3.7
+Philippines	1993	9.4	3.3
+Philippines	1992	9.1	3.2
+Philippines	1991	9.7	3.4
+Philippines	1990	9.9	3.3
+Philippines	1989	9.5	3.5
+Philippines	1988	9.0	3.4
+Philippines	1987	8.5	3.3
+Philippines	1986	9.2	3.4
+Philippines	1985	8.8	3.4
+Philippines	1984	7.8	3.2
+Philippines	1983	7.3	3.1
+Philippines	1982	8.5	3.2
+Philippines	1981	7.9	3.4
+Philippines	1980	7.6	3.5
+Philippines	1979	7.7	3.6
+Philippines	1978	7.2	3.6
+Philippines	1977	7.3	3.6
+Philippines	1976	6.5	3.6
+Philippines	1975	6.1	3.7
+Philippines	1974	5.6	3.6
+Philippines	1973	5.2	3.5
+Philippines	1972	4.6	3.2
+Philippines	1971	5.3	3.3
+Philippines	1970	5.6	3.2
+Philippines	1969	5.5	3.2
+Philippines	1968	4.4	3.3
+Philippines	1967	4.6	3.3
+Philippines	1966	4.1	3.1
+Philippines	1965	4.1	3.1
+Philippines	1964	4.0	3.2
+Philippines	1963	3.8	3.1
+Philippines	1962	4.0	3.2
+Philippines	1961	3.9	3.2
+Thái Lan	2021	33.6	11.2
+Thái Lan	2020	30.2	10.4
+Thái Lan	2019	28.6	9.8
+Thái Lan	2018	32.3	10.6
+Thái Lan	2017	32.9	10.7
+Thái Lan	2015	27.7	9.7
+Thái Lan	2014	32.6	10.7
+Thái Lan	2013	36.8	11.7
+Thái Lan	2012	38.1	12.0
+Thái Lan	2011	38.1	12.0
+Thái Lan	2010	35.7	11.9
+Thái Lan	2009	32.4	11.1
+Thái Lan	2008	32.0	10.7
+Thái Lan	2007	32.5	10.7
+Thái Lan	2006	30.0	10.2
+Thái Lan	2005	30.6	10.2
+Thái Lan	2004	28.9	10.0
+Thái Lan	2003	29.8	10.2
+Thái Lan	2002	28.3	9.7
+Thái Lan	2001	29.1	10.1
+Thái Lan	2000	25.8	9.9
+Thái Lan	1999	24.2	10.0
+Thái Lan	1998	23.0	9.5
+Thái Lan	1997	23.6	9.9
+Thái Lan	1996	22.3	9.3
+Thái Lan	1995	22.0	9.1
+Thái Lan	1994	21.1	9.0
+Thái Lan	1992	19.9	9.2
+Thái Lan	1991	20.4	9.1
+Thái Lan	1990	17.2	8.8
+Thái Lan	1989	20.6	9.9
+Thái Lan	1988	21.3	9.9
+Thái Lan	1987	18.4	9.1
+Thái Lan	1986	18.9	9.2
+Thái Lan	1985	20.3	9.8
+Thái Lan	1984	19.9	9.6
+Thái Lan	1983	19.5	9.6
+Thái Lan	1982	16.9	8.9
+Thái Lan	1981	17.8	9.1
+Thái Lan	1980	17.4	9.2
+Thái Lan	1979	15.8	8.7
+Thái Lan	1978	17.5	8.9
+Thái Lan	1977	13.9	8.8
+Thái Lan	1976	15.1	8.2
+Thái Lan	1975	15.3	8.4
+Thái Lan	1974	13.4	7.3
+Thái Lan	1973	14.9	7.7
+Thái Lan	1972	12.4	6.8
+Thái Lan	1971	13.7	7.1
+Thái Lan	1970	13.9	6.9
+Thái Lan	1969	13.4	7.3
+Thái Lan	1968	12.4	6.9
+Thái Lan	1967	11.2	6.4
+Thái Lan	1966	13.5	7.4
+Việt Nam	2021	43.9	7.2
+Việt Nam	2020	42.8	7.2
+Việt Nam	2019	43.5	7.5
+Việt Nam	2018	44.0	7.6
+Việt Nam	2017	42.8	7.7
+Việt Nam	2016	43.1	7.7
+Việt Nam	2015	45.1	7.8
+Việt Nam	2014	45.0	7.8
+Việt Nam	2013	44.0	7.9
+Việt Nam	2012	43.7	7.8
+Việt Nam	2011	42.4	7.7
+Việt Nam	2010	40.0	7.5
+Việt Nam	2009	39.0	7.4
+Việt Nam	2008	38.7	7.4
+Việt Nam	2007	35.9	7.2
+Việt Nam	2006	35.8	7.3
+Việt Nam	2005	35.8	7.3
+Việt Nam	2004	36.1	7.4
+Việt Nam	2003	34.6	7.5
+Việt Nam	2002	34.4	7.5
+Việt Nam	2001	32.1	7.5
+Việt Nam	2000	32.5	7.7
+Việt Nam	1999	31.4	7.7
+Việt Nam	1998	29.4	7.4
+Việt Nam	1997	27.5	7.1
+Việt Nam	1996	26.4	7.0
+Việt Nam	1995	25.0	6.8
+Việt Nam	1994	23.5	6.6
+Việt Nam	1993	22.8	6.6
+Việt Nam	1992	21.6	6.5
+Việt Nam	1991	19.6	6.3
+Việt Nam	1990	19.2	6.0
+Việt Nam	1989	19.0	5.9
+Việt Nam	1988	17.0	5.7
+Việt Nam	1987	15.1	5.6
+Việt Nam	1986	16.0	5.7
+Việt Nam	1985	15.9	5.7
+Việt Nam	1984	15.5	5.7
+Việt Nam	1983	14.7	5.6
+Việt Nam	1982	14.4	5.7
+Việt Nam	1981	12.4	5.7
+Việt Nam	1980	11.6	5.6
+Việt Nam	1979	11.4	5.5
+Việt Nam	1978	9.8	5.5
+Việt Nam	1977	10.6	5.5
+Việt Nam	1976	11.8	5.3
+Việt Nam	1975	10.3	4.9
+Việt Nam	1974	11.0	5.1
+Việt Nam	1973	11.1	5.0
+Việt Nam	1972	10.7	4.9
+Việt Nam	1971	10.4	4.7
+Việt Nam	1970	10.2	4.7
+Việt Nam	1969	8.8	4.9
+Việt Nam	1968	8.4	4.9
+Việt Nam	1967	9.2	4.8
+Việt Nam	1966	8.5	4.7
+Việt Nam	1965	9.4	4.8
+Việt Nam	1964	9.7	5.0
+Việt Nam	1963	9.6	4.5
+Việt Nam	1962	9.7	4.9
+Việt Nam	1961	9.0	4.7

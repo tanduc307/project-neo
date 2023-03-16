@@ -1,0 +1,42 @@
+Hack não với R
+---
+
+1. Function next to function
+https://stackoverflow.com/questions/47774204/function-in-r-with-multiple-parentheses
+
+#####
+# Cách 1:
+g <- function() { "hello" }
+g()
+
+f <- function() { g } # nếu f là function chứa kết quả trả về của function g
+f # thì lệnh gọi tên function f sẽ trả về ruột của f
+f() # thì lệnh gọi function f sẽ trả về nội hàm của function g
+
+f()() # muốn gọi function g thông qua function f thì dùng cách này
+
+#####
+# Cách 2:
+f <- function() { g } ; g <- function() { "hello" } ; f()()
+
+#####
+# Cách 3:
+f <- function(p) { function(g) g^p }
+f(5)(6)
+
+
+
+
+
+
+
+
+
+
+#########
+
+DANH SÁCH 20 QUỐC GIA THEO FILE PATH
+
+DANH SÁCH 20 QUỐC GIA THEO RANK
+
+XẾP LÀM SAO?

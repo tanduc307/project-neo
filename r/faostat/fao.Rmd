@@ -1,0 +1,454 @@
+---
+title: Hướng dẫn vẽ đồ thị từ nguồn FAOSTAT
+author: Duc Nguyen | Chuyên đào tạo kỹ năng R | `www.tuhocr.com`
+date: Mar 12, 2023
+output:
+  html_document:
+    highlight: pygments
+---
+
+Các bạn sử dụng package `FAOSTAT` để có thể download dataset về nông nghiệp về máy tính. 
+
+Hướng dẫn chi tiết: `https://cran.r-project.org/web/packages/FAOSTAT/index.html`
+
+### BƯỚC 1: DOWNLOAD DATASET
+
+Thay vì download thủ công từ website của FAO `https://www.fao.org/faostat/en/#data/QCL` thì ta sẽ download trực tiếp bộ dataset nông nghiệp (mã `QCL`) về máy tính và dùng R phân tích dữ liệu.
+
+```{r, message=FALSE, warning=FALSE, eval=FALSE}
+library(FAOSTAT)
+data_folder <- "data_raw"
+dir.create(data_folder) ## tạo folder lưu file trên máy tính
+fao_metadata <- FAOsearch()
+FAOsearch(dataset = "crop", full = FALSE)
+
+## dòng lệnh này sẽ thực thi truy vấn download full dataset nông nghiệp về máy tính
+crop_production <- get_faostat_bulk(code = "QCL", data_folder = data_folder)
+
+## bạn save object này ra thành 1 file riêng biệt để thuận tiện sử dụng sau này
+saveRDS(crop_production, "data_raw/crop_production_e_all_data.rds")
+```
+
+### BƯỚC 2: LÀM SẠCH DỮ LIỆU
+
+Thực tế dataset của FAO đã được làm sạch rồi. Tuy nhiên để thuận tiện minh họa cho ví dụ này, mình sẽ lọc ra dữ liệu của **lúa gạo từ số liệu chính thức của Việt Nam, flag `A` trong dataset**.
+
+```{r, message=FALSE, warning=FALSE}
+library(dplyr)
+library(tidyr)
+library(DT)
+
+crop_production <- readRDS("data_raw/crop_production_e_all_data.rds")
+dim(crop_production)
+str(crop_production)
+
+## tách riêng dataset của Việt Nam
+vietnam_data <- subset(crop_production, area == "Viet Nam")
+dim(vietnam_data)
+
+## subset dữ liệu Flag A từ nguồn chính thức do Việt Nam công bố
+vietnam_data_a <- subset(vietnam_data, flag == "A")
+dim(vietnam_data_a)
+
+## chọn những cột cần thiết
+vietnam_crop <- vietnam_data_a[, c("item", "element", "year", "unit", "value")]
+
+## sắp xếp theo năm và thông tin nông sản
+vietnam <- vietnam_crop %>% dplyr::arrange(desc(year), desc(item), desc(element))
+str(vietnam)
+
+## chúng ta có clean dataset để đưa vào phân tích giai đoạn sau
+datatable(vietnam, options = list(pageLength = 30))
+```
+
+<mark>**Đặc trưng bộ dữ liệu này bao gồm thông tin nông sản vật nuôi và cây trồng, gần như toàn diện về sản lượng nông nghiệp ở Việt Nam từ 1961 đến 2021. Các bạn có thể sử dụng công cụ vẽ đồ thị trên website của FAOSTAT hoặc dùng R để vẽ các loại đồ thị bạn quan tâm, trả lời cho câu hỏi nghiên cứu về tình hình nông nghiệp ở Việt Nam.**</mark>
+
+`https://www.fao.org/faostat/en/#compare`
+
+Trong bài hướng dẫn này, mình sẽ sử dụng dữ liệu lúa gạo `Rice` trong dataset để vẽ đồ thị bubble chart nhằm đánh giá tổng quát tương quan giữa năng suất và diện tích canh tác theo thời gian ở Việt Nam.
+
+### BƯỚC 3: LỌC DỮ LIỆU VỀ LÚA GẠO ĐƯA VÀO ĐỒ THỊ
+
+```{r, message=FALSE, warning=FALSE}
+rice <- subset(vietnam, item == "Rice")
+rice_ok <- subset(rice, element != "yield")
+rice_ok <- subset(rice_ok, select = -unit)
+
+head(rice_ok)
+
+## spread dataset để ggplot nhận diện dữ liệu
+rice_final <- rice_ok %>% tidyr::spread(key = "element", value = "value")
+
+head(rice_final)
+
+na.omit(rice_final) -> rice_final
+```
+
+### BƯỚC 4: VẼ ĐỒ THỊ
+
+```{r, message=FALSE, warning=FALSE, fig.width=8, fig.height=6}
+library(ggplot2)
+options(scipen = 99)
+
+p <- ggplot(rice_final, aes(
+  x = year, y = production / 1000000,
+  size = area_harvested / 1000,
+  fill = production / area_harvested
+)) +
+  geom_point(alpha = 0.6, shape = 21, color = "black") +
+  scale_size(range = c(1, 9), name = "Diện tích canh tác (nghìn ha)", 
+             breaks = round(seq(min(rice_final$area_harvested)/1000, max(rice_final$area_harvested)/1000, length.out = 6),
+                            digits = -2)) + 
+  scale_fill_viridis_c(
+    name = "Năng suất (tấn/ha)",
+    option = "D",
+    guide = "colourbar",
+    breaks = round(seq(min(rice_final$production / rice_final$area_harvested), 
+                 max(rice_final$production / rice_final$area_harvested), length.out = 6), digits = 0)
+  ) +
+  guides(
+    size = guide_legend(order = 1),
+    fill = guide_colourbar(barwidth = 1, barheight = 8, order = 2)
+  ) +
+  scale_x_continuous(expand = c(0, 0), limits = c(1955, 2025)) +
+  scale_y_continuous(expand = c(0, 0), limits = c(0, 1.15 * max(rice_final$production) / 1000000)) +
+  
+  ## customize theme
+  
+  theme_classic() +
+  ylab("Sản lượng thu hoạch (triệu tấn)") +
+  xlab("Năm") +
+  
+  ## x and y lab
+  theme(axis.title.x = element_text(face = "bold", size = 10)) +
+  
+  theme(axis.title.y = element_text(
+    face = "bold",
+    margin = margin(t = 1, r = 10, b = 1, l = 10)
+  )) +
+  
+  ## tick text
+  
+  theme(
+    axis.text.x = element_text(
+      face = "bold", color = "#993333",
+      size = 10
+    ),
+    axis.text.y = element_text(
+      face = "bold", color = "#993333",
+      size = 10
+    )
+  ) +
+  
+  ## title
+  
+  labs(title = "Tình hình sản xuất lúa gạo ở Việt Nam từ 1960–2021",
+              subtitle = "Nguồn: FAOSTAT [crop dataset, Vietnam, flag A]",
+              caption = "Đồ thị: Duc Nguyen | tuhocr.com") +
+  
+  theme(
+  plot.title = element_text(size = 12, 
+                            face = "bold", 
+                            hjust = 0, margin = margin(t = 10, r = 0, b = 5, l = 0)),
+  plot.subtitle = element_text(size = 11, hjust = 0, margin = margin(t = 0, r = 0, b = 5, l = 0)),
+  plot.caption = element_text(size = 9, hjust = 1, margin = margin(t = 0, r = 0, b = 5, l = 0))
+) +
+  
+  ## legend
+
+  theme(legend.position = "right", 
+        legend.title = element_text(size = 10, face = "bold"),
+        legend.background = element_blank(),
+        legend.justification = c("right", "bottom"),
+        # legend.box.just = "right",
+        legend.margin = margin(t = 0, r = 0, b = 0, l = 5),
+        legend.spacing.x = unit(0.5, "lines"),
+        legend.spacing.y = unit(0.4, "lines")) +
+  
+  ## margin
+  
+  theme(
+    panel.background = element_rect(fill = "white"),
+    plot.margin = margin(t = 3, r = 14, b = 2, l = 2),
+    plot.background = element_rect(fill = "grey90", colour = "black", linewidth = 1)
+  ) +
+
+  ## bổ sung thêm
+# p + 
+
+#   # annotate(geom = "text", x = 2018, y = 0.85*max(rice_final$production)/1000,
+#   #          label = "Năm 2021 \nđạt 43,8 nghìn tấn",
+#   #          color = "blue",
+#   #          size = 3) +
+  geom_hline(yintercept = 48, colour = "#148c34", lwd = 1.2, lty = 2) +
+  annotate(
+    geom = "text", x = 2000, y = 1.1 * max(rice_final$production) / 1000000,
+    label = "Ngưỡng cực hạn 48 triệu tấn/năm",
+    color = "red"
+  ) +
+#   coord_cartesian(clip = "off")
+  geom_label(aes(x = 1975, y = 0.9 * max(rice_final$production)/1000000, 
+                 label = paste("Năm", max(rice_final$year), "Việt Nam", "\nthu hoạch được", round(rice_final[rice_final$year == max(rice_final$year), ]$production/1000000, digits = 0), "triệu tấn gạo", "\ntrên diện tích canh tác", round(rice_final[rice_final$year == max(rice_final$year), ]$area_harvested/1000, digits = 0), "nghìn ha", "\nnăng suất là", round(rice_final[rice_final$year == max(rice_final$year), ]$production/rice_final[rice_final$year == max(rice_final$year), ]$area_harvested, digits = 2), "tấn/ha")),
+             fill = "#f5ec42", label.size = 0.15, size = 3.5)
+
+## gọi đồ thị
+p
+
+## add hình
+library(grid)
+library(png)
+image <- readPNG("rice.png")
+logor <- readPNG("logor.png")
+grid.raster(image, x = 0.56, y = 0.24, width = 0.23)
+grid.raster(logor, x = 0.9, y = 0.9, width = 0.1)
+```
+
+### BƯỚC 5: SETUP DATASET VỀ LÚA GẠO Ở CÁC QUỐC GIA KHÁC
+
+#### THAILAND-RICE DATASET
+
+```{r, message=FALSE, warning=FALSE, fig.width=8, fig.height=6}
+thailand_data <- subset(crop_production, area == "Thailand")
+dim(thailand_data)
+
+## subset dữ liệu Flag A từ nguồn chính thức do Thái Lan công bố
+thailand_data_a <- subset(thailand_data, flag == "A")
+dim(thailand_data_a)
+
+## chọn những cột cần thiết
+thailand_crop <- thailand_data_a[, c("item", "element", "year", "unit", "value")]
+
+## sắp xếp theo năm và thông tin nông sản
+thailand <- thailand_crop %>% dplyr::arrange(desc(year), desc(item), desc(element))
+str(thailand)
+
+# ## chúng ta có clean dataset để đưa vào phân tích giai đoạn sau
+# datatable(thailand, options = list(pageLength = 30))
+
+## từ đoạn này trở đi thì dùng code cũ, vì object sẽ tự động pass vào.
+rice <- subset(thailand, item == "Rice")
+rice_ok <- subset(rice, element != "yield")
+rice_ok <- subset(rice_ok, select = -unit)
+
+head(rice_ok)
+
+## spread dataset để ggplot nhận diện dữ liệu
+rice_final <- rice_ok %>% tidyr::spread(key = "element", value = "value")
+
+head(rice_final)
+
+na.omit(rice_final) -> rice_final_thailand
+```
+
+#### CHINA-RICE DATASET
+
+```{r, message=FALSE, warning=FALSE, fig.width=8, fig.height=6}
+china_data <- subset(crop_production, area == "China, mainland")
+dim(china_data)
+
+## subset dữ liệu Flag A từ nguồn chính thức do China công bố
+china_data_a <- subset(china_data, flag == "A")
+dim(china_data_a)
+
+## chọn những cột cần thiết
+china_crop <- china_data_a[, c("item", "element", "year", "unit", "value")]
+
+## sắp xếp theo năm và thông tin nông sản
+china <- china_crop %>% dplyr::arrange(desc(year), desc(item), desc(element))
+str(china)
+
+## từ đoạn này trở đi thì dùng code cũ, vì object sẽ tự động pass vào.
+rice <- subset(china, item == "Rice")
+rice_ok <- subset(rice, element != "yield")
+rice_ok <- subset(rice_ok, select = -unit)
+
+head(rice_ok)
+
+## spread dataset để ggplot nhận diện dữ liệu
+rice_final <- rice_ok %>% tidyr::spread(key = "element", value = "value")
+
+head(rice_final)
+
+na.omit(rice_final) -> rice_final_china
+```
+
+#### INDIA-RICE DATASET
+
+```{r, message=FALSE, warning=FALSE, fig.width=8, fig.height=6}
+india_data <- subset(crop_production, area == "India")
+dim(china_data)
+
+## subset dữ liệu Flag A từ nguồn chính thức do China công bố
+india_data_a <- subset(india_data, flag == "A")
+dim(india_data_a)
+
+## chọn những cột cần thiết
+india_crop <- india_data_a[, c("item", "element", "year", "unit", "value")]
+
+## sắp xếp theo năm và thông tin nông sản
+india <- india_crop %>% dplyr::arrange(desc(year), desc(item), desc(element))
+str(india)
+
+## từ đoạn này trở đi thì dùng code cũ, vì object sẽ tự động pass vào.
+rice <- subset(india, item == "Rice")
+rice_ok <- subset(rice, element != "yield")
+rice_ok <- subset(rice_ok, select = -unit)
+
+head(rice_ok)
+
+## spread dataset để ggplot nhận diện dữ liệu
+rice_final <- rice_ok %>% tidyr::spread(key = "element", value = "value")
+
+head(rice_final)
+
+na.omit(rice_final) -> rice_final_india
+```
+
+### BƯỚC 6: FUNCTION HÓA ĐỒ THỊ
+
+```{r, message=FALSE, warning=FALSE, fig.width=8, fig.height=6}
+bubble_chart <- function(input_title, input_subtitle, rice_final, input_country){
+
+p <- ggplot(rice_final, aes(
+  x = year, y = production / 1000000,
+  size = area_harvested / 1000,
+  fill = production / area_harvested
+)) +
+  geom_point(alpha = 0.6, shape = 21, color = "black") +
+  scale_size(range = c(1, 9), name = "Diện tích canh tác (nghìn ha)", 
+             breaks = round(seq(min(rice_final$area_harvested)/1000, max(rice_final$area_harvested)/1000, length.out = 6),
+                            digits = -2)) + 
+  scale_fill_viridis_c(
+    name = "Năng suất (tấn/ha)",
+    option = "D",
+    guide = "colourbar",
+    breaks = round(seq(min(rice_final$production / rice_final$area_harvested), 
+                 max(rice_final$production / rice_final$area_harvested), length.out = 6), digits = 1)
+  ) +
+  guides(
+    size = guide_legend(order = 1),
+    fill = guide_colourbar(barwidth = 1, barheight = 8, order = 2)
+  ) +
+  scale_x_continuous(expand = c(0, 0), limits = c(1955, 2025)) +
+  scale_y_continuous(expand = c(0, 0), limits = c(0, 1.15 * max(rice_final$production) / 1000000)) +
+  
+  ## customize theme
+  
+  theme_classic() +
+  ylab("Sản lượng thu hoạch (triệu tấn)") +
+  xlab("Năm") +
+  
+  ## x and y lab
+  theme(axis.title.x = element_text(face = "bold", size = 10)) +
+  
+  theme(axis.title.y = element_text(
+    face = "bold",
+    margin = margin(t = 1, r = 10, b = 1, l = 10)
+  )) +
+  
+  ## tick text
+  
+  theme(
+    axis.text.x = element_text(
+      face = "bold", color = "#993333",
+      size = 10
+    ),
+    axis.text.y = element_text(
+      face = "bold", color = "#993333",
+      size = 10
+    )
+  ) +
+  
+  ## title
+  
+  labs(title = input_title,
+              subtitle = input_subtitle,
+              caption = "Đồ thị: Duc Nguyen | tuhocr.com") +
+  
+  theme(
+  plot.title = element_text(size = 12, 
+                            face = "bold", 
+                            hjust = 0, margin = margin(t = 10, r = 0, b = 5, l = 0)),
+  plot.subtitle = element_text(size = 11, hjust = 0, margin = margin(t = 0, r = 0, b = 5, l = 0)),
+  plot.caption = element_text(size = 9, hjust = 1, margin = margin(t = 0, r = 0, b = 5, l = 0))
+) +
+  
+  ## legend
+
+  theme(legend.position = "right", 
+        legend.title = element_text(size = 10, face = "bold"),
+        legend.background = element_blank(),
+        legend.justification = c("right", "bottom"),
+        # legend.box.just = "right",
+        legend.margin = margin(t = 0, r = 0, b = 0, l = 5),
+        legend.spacing.x = unit(0.5, "lines"),
+        legend.spacing.y = unit(0.4, "lines")) +
+  
+  ## margin
+  
+  theme(
+    panel.background = element_rect(fill = "white"),
+    plot.margin = margin(t = 3, r = 14, b = 2, l = 2),
+    plot.background = element_rect(fill = "grey90", colour = "black", linewidth = 1)
+  ) +
+
+  ## bổ sung thêm
+# p + 
+
+#   # annotate(geom = "text", x = 2018, y = 0.85*max(rice_final$production)/1000,
+#   #          label = "Năm 2021 \nđạt 43,8 nghìn tấn",
+#   #          color = "blue",
+#   #          size = 3) +
+  # geom_hline(yintercept = 48, colour = "#148c34", lwd = 1.2, lty = 2) +
+  # annotate(
+  #   geom = "text", x = 2000, y = 1.1 * max(rice_final$production) / 1000000,
+  #   label = "Ngưỡng cực hạn 48 triệu tấn/năm",
+  #   color = "red"
+  # ) +
+#   coord_cartesian(clip = "off")
+  geom_label(aes(x = 1975, y = 0.9 * max(rice_final$production)/1000000, 
+                 label = paste("Năm", max(rice_final$year), input_country, "\nthu hoạch được", round(rice_final[rice_final$year == max(rice_final$year), ]$production/1000000, digits = 0), "triệu tấn gạo", "\ntrên diện tích canh tác", round(rice_final[rice_final$year == max(rice_final$year), ]$area_harvested/1000, digits = 0), "nghìn ha", "\nnăng suất là", round(rice_final[rice_final$year == max(rice_final$year), ]$production/rice_final[rice_final$year == max(rice_final$year), ]$area_harvested, digits = 2), "tấn/ha")),
+             fill = "#f5ec42", label.size = 0.15, size = 3.5)
+## gọi đồ thị
+
+return(p)
+## add hình
+# library(grid)
+# library(png)
+# image <- readPNG("rice.png")
+# logor <- readPNG("logor.png")
+
+}
+```
+
+**Vẽ đồ thị cho Thái Lan**
+
+```{r, message=FALSE, warning=FALSE, fig.width=8, fig.height=6}
+q <- bubble_chart(input_title = "Tình hình sản xuất lúa gạo ở Thái Lan từ 1960–2021",
+             input_subtitle = "Nguồn: FAOSTAT [crop dataset, Thailand, flag A]",
+             rice_final = rice_final_thailand,
+             input_country = "Thái Lan")
+q +
+    geom_hline(yintercept = 40, colour = "#148c34", lwd = 1.2, lty = 2) +
+  annotate(
+    geom = "text", x = 2000, y = 1.1 * max(rice_final_thailand$production) / 1000000,
+    label = "Ngưỡng cực hạn 40 triệu tấn/năm",
+    color = "red")
+
+image <- readPNG("thailand.png")
+logor <- readPNG("logor.png")
+grid.raster(image, x = 0.56, y = 0.24, width = 0.23)
+grid.raster(logor, x = 0.9, y = 0.9, width = 0.1)
+```
+
+
+
+### **Sơ kết**
+
+Trên đây là hướng dẫn vẽ đồ thị từ nguồn FAOSTAT. Để học R bài bản từ A đến Z, thân mời Bạn tham gia <span style="color: green">**khóa học "HDSD R để xử lý dữ liệu"**<span style="color: blue"> **để có nền tảng vững chắc về R nhằm tự tay làm các câu chuyện dữ liệu của riêng mình!**
+
+<span style="color: blue">**ĐĂNG KÝ NGAY: `https://www.tuhocr.com/register`**</span>
+
+<mark>**Hướng dẫn cài đặt package `tuhocr` `https://tuhocr.github.io/`**</mark>
+
+<img src="E:/tuhocr/tuhocr.png"  width=30% height=30%>
