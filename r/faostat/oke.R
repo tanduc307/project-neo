@@ -1,18 +1,39 @@
----
-title: Hướng dẫn tạo bảng xếp hạng trong R
-author: Duc Nguyen | Chuyên đào tạo kỹ năng R | `www.tuhocr.com`
-date: Mar 16, 2023
-output:
-  html_document:
-    highlight: pygments
-    # css: doc.css
----
+library(kableExtra)
+library(tidyverse)
+library(magick)
 
-<mark>**Các bạn sử dụng package FAOSTAT để download dataset về và subset ra dữ liệu về lúa gạo. Ở đây mình đã làm công đoạn cleaning data nên chỉ cần import vào để đưa code xuất ra bảng xếp hạng.**</mark>
+kable(mtcars, "latex", booktabs = T) %>%
+  kable_styling(latex_options = c("striped", "scale_down")) %>%
+  row_spec(1, color = "red") %>%
+  as_image("ssss.pdf")
 
-```{r}
+magick::image_read_pdf("E:\\GITHUB\\project-neo\\r\\faostat\\image.pdf")
+
+
+
+# C:\Users\khoa5\AppData\Local\Temp\RtmpeuthZC
+
+magick::image_read_pdf("image.pdf")
+
+
+
+kable(mtcars, "latex", booktabs = T) %>%
+  kable_styling(latex_options = c("striped", "scale_down")) %>%
+  row_spec(1, color = "red") %>%
+  as_image(width = 8)
+
+
+
+
+
+
+
+
+#########
 library(kableExtra)
 library(formattable)
+library(magick)
+library(webshot)
 load("top20_rice.Rdata")
 # options(width = 200)
 
@@ -30,10 +51,10 @@ rice_compare$yield <- round(rice_compare$production / rice_compare$area_harveste
                             digits = 2)
 
 rice_compare$production <- round(rice_compare$production / 1000,
-                            digits = 0)
+                                 digits = 0)
 
 rice_compare$area_harvested <- round(rice_compare$area_harvested / 1000,
-                                 digits = 0)
+                                     digits = 0)
 
 rice_wide <- reshape(data = rice_compare,
                      idvar = c("area"),
@@ -79,7 +100,7 @@ rice_wide$percent_2 <- color_tile("white", "orange")(rice_wide$percent_2)
 
 rice_wide$percent_3 <- color_tile("white", "pink")(rice_wide$percent_3)
 
-file_image <- list.files("png", full.names = TRUE)
+file_image <- list.files("E:\\GITHUB\\project-neo\\r\\faostat\\png", full.names = TRUE)
 
 gsub(".png", "", basename(file_image))[order(match(gsub(".png", "", basename(file_image)), 
                                                    rice_wide$area))] -> file_image_2
@@ -105,31 +126,39 @@ kbl(rice_wide, escape = FALSE, caption = "<center><strong><span style='color: bl
   kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive",
                                       position = "float_left")) %>%
   # kbl(caption = "Recreating booktabs style table") %>%
-  kable_classic(full_width = TRUE, html_font = "arial") %>%
+  kable_classic(full_width = F, html_font = "arial") %>%
   # kable_paper("hover", full_width = TRUE) %>%
-  column_spec(1, width = "2.5cm") %>%
+  column_spec(1, width = "2cm") %>%
   column_spec(2, width = "8cm", border_right = TRUE) %>%
   column_spec(5, border_right = TRUE) %>%
   column_spec(8, border_right = TRUE) %>%
   column_spec(1, image = spec_image(file_image_3 , 96, 72)) %>%
   row_spec(0:20, bold = TRUE) %>%
-  row_spec(5, background = "yellow") %>% 
+  row_spec(5, background = "yellow") %>%
   add_header_above(c("", "", "Sản lượng thu hoạch (nghìn tấn)" = 3, "Diện tích canh tác (nghìn ha)" = 3, "Năng suất (tấn/ha)" = 3),
-                   bold = TRUE)
-```
+                   bold = TRUE) %>%
+  save_kable("test_kable1.pdf")
 
-### Tài liệu tham khảo
 
-1. `https://www.fao.org/faostat/en/#data`
-2. `https://cran.r-project.org/web/packages/kableExtra/vignettes/awesome_table_in_html.html`
-3. `https://svgtopng.com/`
 
-### **Sơ kết**
 
-Trên đây là hướng dẫn tạo bảng xếp hạng trong R. Để học R bài bản từ A đến Z, thân mời Bạn tham gia <span style="color: green">**khóa học "HDSD R để xử lý dữ liệu"**<span style="color: blue"> **để có nền tảng vững chắc về R nhằm tự tay làm các câu chuyện dữ liệu của riêng mình!**
 
-<span style="color: blue">**ĐĂNG KÝ NGAY: `https://www.tuhocr.com/register`**</span>
 
-<mark>**Hướng dẫn cài đặt package `tuhocr` `https://tuhocr.github.io/`**</mark>
 
-<img src="E:/tuhocr/tuhocr.png"  width=20% height=20%>
+%>% as_image(width = 12)
+
+
+
+kable(mtcars, "latex", booktabs = T) %>%
+  kable_styling(latex_options = c("striped", "scale_down")) %>%
+  row_spec(1, color = "red")
+
+
+kable(mtcars, "latex", booktabs = T) %>%
+  kable_styling(latex_options = c("striped", "scale_down")) %>%
+  row_spec(1, color = "red") %>%
+  save_kable("test_kable.pdf")
+
+
+
+

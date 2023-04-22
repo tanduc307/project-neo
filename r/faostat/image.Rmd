@@ -1,0 +1,70 @@
+---
+title: "Tạo bảng xếp hạng"
+output:
+  # html_document:
+  #   theme: simplex
+  #   toc: yes
+  #   toc_depth: 2
+  #   toc_float: yes
+  # pdf_document:
+  #   toc: yes
+  #   toc_depth: '2'
+header-includes:
+  - \usepackage{booktabs}
+  - \usepackage[utf8]{vietnam}
+  - \usepackage{longtable}
+  - \usepackage{array}
+  - \usepackage{multirow}
+  - \usepackage{wrapfig}
+  - \usepackage{float}
+  - \usepackage{colortbl}
+  - \usepackage{pdflscape}
+  - \usepackage{tabu}
+  - \usepackage{threeparttable}
+  - \usepackage{threeparttablex}
+  - \usepackage[normalem]{ulem}
+  - \usepackage{makecell}
+  - \usepackage{xcolor}
+---
+
+```{r}
+# library(magick)
+# manual <- image_read_pdf('https://cloud.r-project.org/web/packages/magick/magick.pdf', density = 300)
+# image_info(manual)
+# manual[1]
+
+# library(kableExtra)
+# kable(mtcars, "latex", booktabs = T) %>%
+#   kable_styling(latex_options = c("striped", "scale_down")) %>%
+#   row_spec(1, color = "red") %>%
+#   as_image(width = 8)
+
+library(kableExtra)
+
+kable(mtcars, 
+      "latex",
+      booktabs = T) %>%
+  kable_styling(latex_options = c("striped", "scale_down")) %>%
+  row_spec(1, color = "red") %>%
+  as_image()
+
+```
+
+
+```{r}
+# library(kableExtra)
+# library(xml2)
+# 
+# demo <- kable(mtcars[1:4, 1:4]) %>%  # As always, mtcars ;)
+#   kable_styling(full_width = F) %>%
+#   kable_as_xml() 
+# 
+# demo %>%                     # Transform to xml
+#   xml_child(2) %>%           # Select <tbody> (1 is <thead>)
+#   xml_child(2) %>%           # Select 2nd row <tr> in <tbody>
+#   xml_child(1) %>%           # Select 1st cell in 2nd row <td>
+#   xml_set_attr("class", "badIdea")   # Add attribute to style
+# 
+# xml_as_kable(demo)             # Render that xml back as kable
+```
+

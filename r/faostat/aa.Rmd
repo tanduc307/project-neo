@@ -1,0 +1,12 @@
+aaa
+---
+
+```{r}
+library(kableExtra)
+
+kable(mtcars, "html") %>%
+  kable_styling("striped") %>%
+  row_spec(1, color = "red") %>%
+  as_image(width = 4)
+```
+
