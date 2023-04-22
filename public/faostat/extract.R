@@ -92,6 +92,8 @@ extract_item <- function(input_item, input_rds, input_region){
     
     rice_ready <- na.omit(rice_ready)
     
+    attributes(rice_ready)$na.action <- NULL
+    
     names(rice_ready)[4] <- "production"
     names(rice_ready)[5] <- "area_harvested"
     row.names(rice_ready) <- NULL 
@@ -113,24 +115,35 @@ rice_country <- extract_item(input_item = "Rice",
 
 #### BƯỚC 4: HTML
 
+library(kableExtra)
 
+rice_country %>%
+    kbl() %>%
+    kable_styling(bootstrap_options = c("striped", 
+                                        "hover", 
+                                        "condensed", 
+                                        "bordered", 
+                                        "responsive")) %>%
+    kable_classic(full_width = FALSE, html_font = "arial") -> output
 
+save_kable(output, file = "rice_country.html")
 
+#### BƯỚC 5: RVEST
+# https://cran.r-project.org/web/packages/rvest/vignettes/rvest.html
 
+library(rvest)
+library(xml2)
+library(httr)
 
+html <- read_html("https://studyr.netlify.app/faostat/rice_country.html")
 
+html %>% 
+    html_node("table") %>% 
+    html_table() -> rice_html
 
+rice_html <- as.data.frame(rice_html)
 
-
-
-
-
-
-
-
-
-
-
+identical(rice_html, rice_country)
 
 
 
