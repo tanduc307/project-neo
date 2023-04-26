@@ -98,9 +98,17 @@ extract_item <- function(input_item, input_rds, input_region){
     names(rice_ready)[5] <- "area_harvested"
     row.names(rice_ready) <- NULL 
     
+    ## ĐỔI TÊN DATASET
+    
     rice_ready -> item_ready
     
+    ## TÍNH NĂNG SUẤT, NẾU CÓ NAN HOẶC INF THÌ SET BẰNG 0
+    
     item_ready$yield <- round(item_ready$production / item_ready$area_harvested, digits = 2)
+    
+    item_ready$yield[is.nan(item_ready$yield)] <- 0
+    
+    item_ready$yield[is.infinite(item_ready$yield)] <- 0
     
     return(item_ready)
 
@@ -143,7 +151,108 @@ html %>%
 
 rice_html <- as.data.frame(rice_html)
 
-identical(rice_html, rice_country)
+# kết quả là TRUE, lưu ý khi get data về thì class numeric có lúc integer.
+
+# identical(rice_html, rice_country)
+# 
+# identical(dim(rice_html), dim(rice_country))
+# 
+# identical(row.names(rice_html), row.names(rice_country))
+# 
+# identical(summary(rice_html), summary(rice_country))
+# 
+# identical(str(rice_html), str(rice_country))
+# 
+# identical(attributes(rice_html), attributes(rice_country))
+# 
+# identical(names(rice_html), names(rice_country))
+# 
+# identical(sapply(rice_html, class), sapply(rice_country, class))
+# 
+# rice_html$area_harvested <- as.numeric(rice_html$area_harvested)
+
+#### BƯỚC 6: RVEST
+
+crop_full <- readRDS("data_raw_20230422/crop_production_all_data.rds")
+
+sort(unique(crop_full$item))
+
+
+#### BƯỚC 7: Bananas
+
+bananas_country <- extract_item(input_item = "Bananas",
+                input_rds = "data_raw_20230422/crop_production_all_data.rds",
+                input_region = "data_raw_20230422/FAOSTAT_data_4-22-2023.csv")
+
+
+library(kableExtra)
+
+bananas_country %>%
+    kbl() %>%
+    kable_styling(bootstrap_options = c("striped", 
+                                        "hover", 
+                                        "condensed", 
+                                        "bordered", 
+                                        "responsive")) %>%
+    kable_classic(full_width = FALSE, html_font = "arial") -> output
+
+save_kable(output, file = "bananas_country.html")
+
+
+# Eggs Primary
+
+eggs_primary_country <- subset(crop_full, item == "Eggs Primary")
+
+head(eggs_primary_country)
+
+table(eggs_primary_country$element)
+table(eggs_primary_country$unit)
+
+################### CHECK COI ỨNG VỚI TỪNG ITEM THÌ ELEMENT VÀ UNIT NÓ RA SAO??? CÂU HỎI KHÓ!!!
+
+dim(rice_country[which(is.na(rice_country$yield)), ])
+summary(rice_country)
+options("max.print" = 10000)
+
+rice_country
+
+## NGHIÊN CỨU LẠI DATABASE CROP_FULL
+
+crop_full <- readRDS("data_raw/crop_production_all_data.rds")
+
+names(crop_full)
+
+head(crop_full, n = 30)
+
+#### CHECK COUNTRY AREA CÁI THỬ COI
+# https://thinkr-open.github.io/fakir/
+library(countrycode)
+
+
+#### LIST RA TƯƠNG ỨNG TỪNG ITEM VÀ NAME OF ELEMENT
+
+ok <- as.data.frame(table(crop_full$item, crop_full$element))
+
+library(dplyr)
+
+ok |> dplyr::arrange(Freq) -> ok_1
+ok_2 <- ok_1 |> subset(Freq != 0)
+ok_2 |> dplyr::arrange(Var1, Var2, Freq) -> ok_3
+ok_4 <- reshape(data = ok_3,
+                idvar = c("Var1"),
+                v.names = "Freq",
+                timevar = "Var2",
+                direction = "wide") 
+ok_4[!is.na(ok_4$Freq.area_harvested) & !is.na(ok_4$Freq.production), ] -> ok_5
+as.character(ok_5$Var1) -> crop_item
+crop_item
+
+##########################
+
+
+
+
+
 
 
 

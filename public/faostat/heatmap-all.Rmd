@@ -1,0 +1,481 @@
+---
+title: Áp dụng function để vẽ heatmap tự động
+author: Duc Nguyen | Chuyên đào tạo kỹ năng R | `www.tuhocr.com`
+date: Apr 26, 2023
+output:
+  html_document:
+    highlight: pygments
+    # css: doc.css
+---
+
+**Câu chuyện này tiếp theo nội dung hướng dẫn vẽ heatmap trong R ở đây**
+
+`https://rpubs.com/tuhocr/huong-dan-ve-heatmap`
+
+**Mục tiêu là nếu vẽ dữ liệu lúa gạo thì ta sẽ subset dataset `rice` trong datase chung của FAO. Tương tự, nếu muốn vẽ về dữ liệu cà phê, hồ tiêu, cây ăn quả, ... thì ta cần subset dataset có codename tương ứng và ráp code thủ công vào để render đồ thị. Việc này sẽ khá bất tiện nếu đoạn code dài và qua nhiều bước. Để tiết kiệm thời gian thì ta sẽ tạo function để làm công đoạn cleaning dataset tương ứng codename từng loại nông sản, cũng như function để vẽ đồ thị heatmap theo cùng template thì sẽ tiết kiệm thời gian hơn.**
+
+**Các bạn có thể xem series chuyên đề R siêu nhanh để hiểu rõ câu chuyện này nhé | Bài 2: Cách download dữ liệu FAOSTAT**
+
+`https://youtu.be/2UXv1zg2XJ8`
+
+### FUNCTION HÓA BƯỚC SUBSET DỮ LIỆU
+
+```{r, message=FALSE, warning=FALSE}
+extract_item <- function(input_item, input_rds, input_region){
+    
+    # CLEAN DATA
+    
+    ## 2.1) TÁCH ITEM QUAN TÂM
+    
+    crop_full <- readRDS(input_rds)
+    
+    crop_full_clean <- crop_full[ , c(3, 6, 8, 10, 11, 12)]
+    
+    rice_all <- subset(crop_full_clean, item == input_item)
+    
+    ## 2.2) TÁCH QUỐC GIA KHỎI THÔNG TIN REGION
+    
+    read.csv(input_region) -> country_group
+    
+    region_name <- unique(country_group$Country.Group)
+    
+    country_name <- unique(rice_all$area)
+    
+    country_1 <- country_name[!(country_name %in% region_name)]
+    
+    rice_country <- rice_all[rice_all$area %in% country_1, ]
+    
+    ## 2.3) SẮP XẾP DATA THEO TRẬT TỰ
+    
+    library(dplyr)
+    
+    rice_country <- rice_country %>% dplyr::arrange(area, 
+                                                    desc(year),
+                                                    desc(element),
+                                                    desc(value)
+    )
+    
+    #### BƯỚC 3: CHECK DATA AND CLEAN ####
+    
+    ## SỬ DỤNG LỆNH TAPPLY ĐỂ TÌM THÔNG TIN CÁC QUỐC GIA KHÔNG SẢN XUẤT GẠO
+    
+    check_1 <- tapply(rice_country$value, 
+                      list(rice_country$area, rice_country$element), 
+                      FUN = sum, na.rm = TRUE)
+    
+    check_2 <- as.data.frame(check_1)
+    
+    check_2$area <- row.names(check_2)
+    
+    check_2[, c(4, 1:3)] -> check_2
+    
+    row.names(check_2) <- NULL
+    
+    check_2 |> dplyr::arrange(area_harvested, production, yield, area) -> check_3
+    
+    country_check <- check_3 |> subset(area_harvested == 0)
+    
+    ## SUBSET NHỮNG QUỐC GIA CÓ SẢN XUẤT GẠO
+    
+    country_name_1 <- unique(rice_country$area)
+    
+    country_2 <- country_name_1[!(country_name_1 %in% country_check$area)]
+    
+    rice_country_2 <- rice_country[rice_country$area %in% country_2, ]
+    
+    #### BƯỚC 4: RESHAPE DATA ####
+    
+    rice_country_2 <- rice_country_2 |> subset(select = -unit)
+    
+    rice_ready <- reshape(data = rice_country_2,
+                          idvar = c("year", "area"),
+                          v.names = "value",
+                          timevar = "element",
+                          direction = "wide") 
+    
+    ## BỎ CỘT YIELD
+    
+    rice_ready <- rice_ready[, c(1, 2, 3, 5, 6)]
+    
+    ## BỎ MISSING VALUE, CHỈNH LẠI TÊN CỘT VÀ ROW.NAMES
+    
+    rice_ready <- na.omit(rice_ready)
+    
+    attributes(rice_ready)$na.action <- NULL
+    
+    names(rice_ready)[4] <- "production"
+    names(rice_ready)[5] <- "area_harvested"
+    row.names(rice_ready) <- NULL 
+    
+    ## ĐỔI TÊN DATASET
+    
+    rice_ready -> item_ready
+    
+    ## TÍNH NĂNG SUẤT, NẾU CÓ NAN HOẶC INF THÌ SET BẰNG 0
+    
+    item_ready$yield <- round(item_ready$production / item_ready$area_harvested, digits = 2)
+    
+    item_ready$yield[is.nan(item_ready$yield)] <- 0
+    
+    item_ready$yield[is.infinite(item_ready$yield)] <- 0
+    
+    return(item_ready)
+
+}
+
+```
+
+**Rice**
+
+```{r, message=FALSE, warning=FALSE}
+rice_country <- extract_item(input_item = "Rice",
+             input_rds = "data_raw_20230422/crop_production_all_data.rds",
+             input_region = "data_raw_20230422/FAOSTAT_data_4-22-2023.csv")
+
+```
+
+### VẼ HEATMAP CHO DATA LÚA GẠO
+
+```{r, message=FALSE, warning=FALSE, fig.width=9, fig.height=18, eval=F}
+####### sắp xếp big matrix
+
+rice_country -> rice_ready
+
+rice_ready -> rice_check
+
+matrix_rice <- rice_check[, c(1, 3, 4)]
+
+length(unique(rice_check$area)) -> so_luong_quoc_gia
+
+a <- as.character(so_luong_quoc_gia)
+
+matrix_rice$area <- reorder(matrix_rice$area, matrix_rice$production)
+
+matrix_rice <- matrix_rice |> dplyr::arrange(desc(area), year)
+
+matrix_1 <- reshape(data = matrix_rice,
+                     idvar = c("area"),
+                     v.names = "production",
+                     timevar = "year",
+                     direction = "wide") 
+
+colnames(matrix_1)[2:62] <- unique(matrix_rice$year)
+
+matrix_2 <- matrix_1[, 2:62]
+
+rownames(matrix_2) <- matrix_1[, 1]
+
+#########
+
+library(plot.matrix)
+library(RColorBrewer)
+options(scipen = 6, digits = 2)
+v <- matrix_2
+## convert qua matrix
+v <- as.matrix(v)
+
+z <- v/1000000
+
+par(mar = c(4, 9, 6, 4))
+
+par(mgp = c(0, 0.7, 0))
+
+par("cex.axis" = 0.5)
+par(xpd = TRUE) # đưa legend outside plot
+
+plot.matrix:::plot.matrix(z,
+                          las = 1, 
+                          key = list(side = 4, font = 2),
+                          col = c("#00ffff", hsv(0.1, seq(0.15, 1, length.out = 9), 1), "#ff685d", "#ff4e41", "#ff3122"),
+                          na.col = "grey",
+                          main = "",
+                          axis.row = list(side = 2, font = 2, tick = FALSE),
+                          axis.col = list(side = 1, font = 2),
+                          xlab = "", ylab = "",
+                          breaks = c(0, 0.0000000001, 1, 10, 30, 60, 90, 100, 130, 160, 200, 230, 260),
+                          # key= list(side = 4, font = 2, cex.axis = 0.75), 
+                          fmt.key = "%.0f",
+                          # polygon.key = NULL, 
+                          # axis.key = NULL, 
+                          # spacing.key=c(3, 2, 2)
+                          # border = NA
+                          )
+
+title(main = "Các quốc gia sản xuất lúa gạo trên thế giới (1961–2021) | Nguồn: FAOSTAT | Đồ họa: tuhocr.com",
+      adj = 0, col.main = "blue", cex.main = 0.9, line = 3.5)
+
+# mysubtitle <- substitute(paste(italic("Dữ liệu của"), italic(x)), italic("quốc gia và vùng lãnh thổ được sắp xếp theo alphabet")))
+
+# mysubtitle <- substitute('Example map with'~italic(x), list(x=so_luong_quoc_gia))
+
+mysubtitle <- bquote(italic('Thứ tự của')~italic(.(a))~italic("quốc gia và vùng lãnh thổ được sắp xếp theo sản lượng sản xuất."))
+                         
+mtext(side = 3, line = 1.8, adj = 0, cex = 0.8, mysubtitle, col = "red")
+
+legend("bottom",
+       legend = c("Không có dữ liệu", "Không sản xuất"),
+       fill = c("grey", "#00ffff"),
+       # lty = c(1, 2), cex = 1,
+       # pch = c(NA, 21),
+       # lwd = 2,
+       x.intersp = 1,
+       y.intersp = 2,
+       inset = -0.045,
+       box.lty = 0,
+       horiz = TRUE, 
+       cex = 0.8,
+       bg = "transparent")
+
+par(new = TRUE)
+
+par(yaxt = "none")
+
+par(mgp = c(0, 0.7, 0))
+
+plot.matrix:::plot.matrix(z,
+                          las = 1,
+                          key = list(side = 4, font = 2),
+                          col = c("#00ffff", hsv(0.1, seq(0.15, 1, length.out = 9), 1), "#ff685d", "#ff4e41", "#ff3122"),
+                          na.col = "grey",
+                          main = "",
+                          # axis.row = list(side = 2, font = 2),
+                          axis.col = list(side = 3, font = 2),
+                          xlab = "", ylab = "",
+                          breaks = c(0, 0.0000000001, 1, 10, 30, 60, 90, 100, 130, 160, 200, 230, 260),
+                          # border = NA
+                          # key= list(side = 4, font = 2, cex.axis = 0.75), 
+                          fmt.key = "%.0f",
+                          # polygon.key = NULL, 
+                          # axis.key = NULL, 
+                          # spacing.key=c(3, 2, 2)
+                          )
+
+par(lheight = 1.15) # chỉnh khoảng cách giữa hai dòng text
+
+text(x = 66, y = 122, 
+     substitute(paste(bold("Đơn vị: \ntriệu tấn"))), cex = 0.7,
+     col = "red")
+
+# mycaption <- expression(bold("*Không có dữ liệu: bao gồm không có thông tin và có dữ liệu nhưng bằng 0."))
+# mtext(side = 1, line = 1.8, adj = 0, cex = 0.8, mycaption, col = "darkgreen")
+
+library(png) ## dùng đề chèn file ảnh
+library(grid) ## canh chỉnh vị trí ảnh
+logor <- readPNG("logo-blue.png")
+grid.raster(logor, x = 0.12, y = 0.97, width = 0.1)
+```
+
+### FUNCTION HÓA BƯỚC VẼ HEATMAP
+
+```{r, message=FALSE, warning=FALSE, fig.width=9, fig.height=18, eval=TRUE}
+ve_heat_map <- function(input_data,
+                        tua_de,
+                        don_vi,
+                        ty_le,
+                        fix_text){
+    
+input_data -> rice_ready
+
+rice_ready -> rice_check
+
+matrix_rice <- rice_check[, c(1, 3, 4)]
+
+length(unique(rice_check$area)) -> so_luong_quoc_gia
+
+a <- as.character(so_luong_quoc_gia)
+
+matrix_rice$area <- reorder(matrix_rice$area, matrix_rice$production)
+
+matrix_rice <- matrix_rice |> dplyr::arrange(desc(area), year)
+
+matrix_1 <- reshape(data = matrix_rice,
+                     idvar = c("area"),
+                     v.names = "production",
+                     timevar = "year",
+                     direction = "wide") 
+
+colnames(matrix_1)[2:62] <- unique(matrix_rice$year)
+
+matrix_2 <- matrix_1[, 2:62]
+
+rownames(matrix_2) <- matrix_1[, 1]
+
+#########
+
+library(plot.matrix)
+library(RColorBrewer)
+options(scipen = 6, digits = 2)
+v <- matrix_2
+## convert qua matrix
+v <- as.matrix(v)
+
+z <- v/ty_le
+
+break_scale <- round(seq(from = 30, to = max(z, na.rm = TRUE)*1.2, length.out = 9), digits = -1)
+
+par(mar = c(4, 9, 6, 4))
+
+par(mgp = c(0, 0.7, 0))
+
+par("cex.axis" = 0.5)
+par(xpd = TRUE) # đưa legend outside plot
+
+plot.matrix:::plot.matrix(z,
+                          las = 1, 
+                          key = list(side = 4, font = 2),
+                          col = c("#00ffff", hsv(0.1, seq(0.15, 1, length.out = 9), 1), "#ff685d", "#ff4e41", "#ff3122"),
+                          na.col = "grey",
+                          main = "",
+                          axis.row = list(side = 2, font = 2, tick = FALSE),
+                          axis.col = list(side = 1, font = 2),
+                          xlab = "", ylab = "",
+                          breaks = c(0, 0.0000000001, 1, 10, break_scale),
+                          # key= list(side = 4, font = 2, cex.axis = 0.75), 
+                          fmt.key = "%.0f",
+                          # polygon.key = NULL, 
+                          # axis.key = NULL, 
+                          # spacing.key=c(3, 2, 2)
+                          # border = NA
+                          )
+
+title(main = tua_de,
+      adj = 0, col.main = "blue", cex.main = 0.9, line = 3.5)
+
+# mysubtitle <- substitute(paste(italic("Dữ liệu của"), italic(x)), italic("quốc gia và vùng lãnh thổ được sắp xếp theo alphabet")))
+
+# mysubtitle <- substitute('Example map with'~italic(x), list(x=so_luong_quoc_gia))
+
+mysubtitle <- bquote(italic('Thứ tự của')~italic(.(a))~italic("quốc gia và vùng lãnh thổ được sắp xếp theo sản lượng sản xuất."))
+                         
+mtext(side = 3, line = 1.8, adj = 0, cex = 0.8, mysubtitle, col = "red")
+
+legend("bottom",
+       legend = c("Không có dữ liệu", "Không sản xuất"),
+       fill = c("grey", "#00ffff"),
+       # lty = c(1, 2), cex = 1,
+       # pch = c(NA, 21),
+       # lwd = 2,
+       x.intersp = 1,
+       y.intersp = 2,
+       inset = -0.045/a1,
+       box.lty = 0,
+       horiz = TRUE, 
+       cex = 0.8,
+       bg = "transparent")
+
+par(new = TRUE)
+
+par(yaxt = "none")
+
+par(mgp = c(0, 0.7, 0))
+
+plot.matrix:::plot.matrix(z,
+                          las = 1,
+                          key = list(side = 4, font = 2),
+                          col = c("#00ffff", hsv(0.1, seq(0.15, 1, length.out = 9), 1), "#ff685d", "#ff4e41", "#ff3122"),
+                          na.col = "grey",
+                          main = "",
+                          # axis.row = list(side = 2, font = 2),
+                          axis.col = list(side = 3, font = 2),
+                          xlab = "", ylab = "",
+                          breaks = c(0, 0.0000000001, 1, 10, break_scale),
+                          # border = NA
+                          # key= list(side = 4, font = 2, cex.axis = 0.75), 
+                          fmt.key = "%.0f",
+                          # polygon.key = NULL, 
+                          # axis.key = NULL, 
+                          # spacing.key=c(3, 2, 2)
+                          )
+
+par(lheight = 1.15) # chỉnh khoảng cách giữa hai dòng text
+
+text(x = 66, y = 122*fix_text, 
+     substitute(paste(bold(don_vi))), cex = 0.7,
+     col = "red")
+
+# mycaption <- expression(bold("*Không có dữ liệu: bao gồm không có thông tin và có dữ liệu nhưng bằng 0."))
+# mtext(side = 1, line = 1.8, adj = 0, cex = 0.8, mycaption, col = "darkgreen")
+
+library(png) ## dùng đề chèn file ảnh
+library(grid) ## canh chỉnh vị trí ảnh
+logor <- readPNG("logo-blue.png")
+grid.raster(logor, x = unit(0.12, "npc"), y = unit(1, "npc"), width = 0.1) 
+    
+}
+
+```
+
+**Coffee, green**
+
+```{r, message=FALSE, warning=FALSE, fig.width=9, fig.height=85*18/128, eval=F}
+
+coffee_country <- extract_item(input_item = "Coffee, green",
+             input_rds = "data_raw_20230422/crop_production_all_data.rds",
+             input_region = "data_raw_20230422/FAOSTAT_data_4-22-2023.csv"
+             )
+
+length(unique(coffee_country$area))/128 -> a1
+
+ve_heat_map(input_data = coffee_country, 
+            tua_de = "Các quốc gia sản xuất cà phê trên thế giới (1961–2021) | Nguồn: FAOSTAT | Đồ họa: tuhocr.com",
+            don_vi = "Đơn vị \nnghìn tấn",
+            ty_le = 1000,
+            fix_text = a1)
+```
+
+**Rice**
+
+```{r, message=FALSE, warning=FALSE, fig.width=9, fig.height=18, eval=TRUE}
+rice_country_1 <- extract_item(input_item = "Rice",
+             input_rds = "data_raw_20230422/crop_production_all_data.rds",
+             input_region = "data_raw_20230422/FAOSTAT_data_4-22-2023.csv"
+             )
+
+length(unique(rice_country_1$area))/128 -> a1
+
+length(unique(rice_country_1$area))
+
+a1
+
+ve_heat_map(input_data = rice_country_1, 
+            tua_de = "Các quốc gia sản xuất lúa gạo trên thế giới (1961–2021) | Nguồn: FAOSTAT | Đồ họa: tuhocr.com",
+            don_vi = "Đơn vị \ntriệu tấn",
+            ty_le = 1000000,
+            fix_text = a1)
+
+```
+
+```{r, message=FALSE, warning=FALSE, fig.width=9, eval=TRUE}
+rice_country_2 <- extract_item(input_item = "Rice",
+             input_rds = "data_raw_20230422/crop_production_all_data.rds",
+             input_region = "data_raw_20230422/FAOSTAT_data_4-22-2023.csv"
+             )
+
+rice_country_2 <- rice_country_2 |> subset(area != "Saint Vincent and the Grenadines")
+rice_country_2 <- rice_country_2 |> subset(area != "Réunion")
+rice_country_2 <- rice_country_2 |> subset(area != "Micronesia (Federated States of)")
+rice_country_2 <- rice_country_2 |> subset(area != "Mauritius")
+rice_country_2 <- rice_country_2 |> subset(area != "Syrian Arab Republic")
+
+length(unique(rice_country_2$area))/128 -> a1
+
+length(unique(rice_country_2$area))
+
+a1
+
+ve_heat_map(input_data = rice_country_2, 
+            tua_de = "Các quốc gia sản xuất TEST trên thế giới (1961–2021) | Nguồn: FAOSTAT | Đồ họa: tuhocr.com",
+            don_vi = "Đơn vị \ntriệu tấn",
+            ty_le = 1000000,
+            fix_text = a1)
+```
+
+### **Sơ kết**
+
+Trên đây là hướng dẫn ap dụng function để vẽ heatmap tự động. Để học R bài bản từ A đến Z, thân mời Bạn tham gia <span style="color: green">**khóa học "HDSD R để xử lý dữ liệu"**<span style="color: blue"> **để có nền tảng vững chắc về R nhằm tự tay làm các câu chuyện dữ liệu của riêng mình!**
+
+<span style="color: blue">**ĐĂNG KÝ NGAY: `https://www.tuhocr.com/register`**</span>
+
+<mark>**Hướng dẫn cài đặt package `tuhocr` `https://tuhocr.github.io/`**</mark>
+
+<img src="E:/tuhocr/tuhocr.png"  width=20% height=20%>
