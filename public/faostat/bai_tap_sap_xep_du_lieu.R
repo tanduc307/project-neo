@@ -1,16 +1,16 @@
 
 crop_full <- readRDS("data_raw/crop_production_all_data.rds")
 
-dim(crop_full)
-
-head(crop_full)
-
-View(crop_full)
+# dim(crop_full)
+# 
+# head(crop_full)
+# 
+# View(crop_full)
 
 library(kableExtra)
 
 crop_full[c(1:1000, 3760216:3761216), ] %>%
-    kbl(escape = FALSE, caption = "<center><strong><span style='color: red'>Dataset Crop QCL từ FAOSTAT gồm 37 triệu dòng và 14 cột (cột đầu là STT) | Minh họa: tuhocr.com</span></strong></center>",
+    kbl(escape = FALSE, caption = "<center><strong><span style='color: red'>Dataset Crop QCL từ FAOSTAT gồm 3.7 triệu dòng và 14 cột (cột đầu là STT) | Minh họa: tuhocr.com</span></strong></center>",
         format = "html") %>%
     kable_styling(bootstrap_options = c("striped", 
                                         "hover", 
@@ -20,7 +20,7 @@ crop_full[c(1:1000, 3760216:3761216), ] %>%
     kable_classic(full_width = FALSE, html_font = "arial") %>% 
     add_header_above(c("Dataset này chỉ thể hiện 1000 giá trị đầu và 1000 giá trị cuối" = 14), bold = TRUE, color = "white", background = "darkgreen")-> output
 
-save_kable(output, file = "crop_full123.html")
+save_kable(output, file = "crop_full.html")
 
 #######################
 

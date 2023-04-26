@@ -9,7 +9,7 @@ output:
 
 ### Đề bài
 
-**Bạn có 1 file [`crop_full.rds`](https://studyr.netlify.app/faostat/data_raw/crop_production_all_data.rds) (13.9 MB) chứa dữ liệu về nông nghiệp của FAO, gồm 37 triệu dòng. Bạn sử dụng package `FAOSTAT` để download về nhé. Cách thức download file này được mình trình bày ở BÀI 2: CÁCH TẢI DATASET TỪ FAOSTAT trong playlist [HỌC R SIÊU NHANH](https://www.youtube.com/playlist?list=PLCKFKYBfLgPV07MhYMoOMlazOSS7KwKuA).**
+**Bạn có 1 file [`crop_full.rds`](https://studyr.netlify.app/faostat/data_raw/crop_production_all_data.rds) (13.9 MB) chứa dữ liệu về nông nghiệp của FAO, gồm 3.7 triệu dòng. Bạn sử dụng package `FAOSTAT` để download về nhé. Cách thức download file này được mình trình bày ở BÀI 2: CÁCH TẢI DATASET TỪ FAOSTAT trong playlist [HỌC R SIÊU NHANH](https://www.youtube.com/playlist?list=PLCKFKYBfLgPV07MhYMoOMlazOSS7KwKuA).**
 
 **Cấu trúc file này như sau: [crop_full.html](https://studyr.netlify.app/faostat/crop_full.html)**
 
