@@ -106,6 +106,7 @@ rice_country <- extract_item(input_item = "Rice",
                              input_rds = "data_raw_20230422/crop_production_all_data.rds",
                              input_region = "data_raw_20230422/FAOSTAT_data_4-22-2023.csv")
 
+saveRDS(rice_country, file = "rice_country.rds")
 
 rice_country <- rice_country |> subset(area != "Saint Vincent and the Grenadines")
 rice_country <- rice_country |> subset(area != "Réunion")
@@ -115,10 +116,6 @@ rice_country <- rice_country |> subset(area != "Syrian Arab Republic")
 
 
 ##################
-
-
-
-
 
 rice_country -> rice_ready
 
@@ -228,7 +225,7 @@ legend("bottom",
 
 par(new = TRUE)
 
-par(yaxt = "none")
+par(yaxt = "none")oldpa
 
 par(mgp = c(0, 0.7, 0))
 
