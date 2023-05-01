@@ -1,0 +1,16 @@
+{
+  "hash": "bec8bd3785e225c520b43fc62c81cd22",
+  "result": {
+    "markdown": "---\ntitle: \"Hướng dẫn convert table trong PDF qua Excel sử dụng R\"\nauthor: \"Duc Nguyen | tuhocr.com\"\nsite-url: https://www.tuhocr.com/\ndate: \"3/27/2023\"\ncover-image: cover.png\nfavicon: favicon.png\nformat: \n    html:\n        theme: [style.scss]\n        # highlight-style: dracula\n        code-annotations: below\n---\n\n\n## Tình huống thường gặp\n\nBạn có 1 file PDF chứa thông tin ở dạng table, ví dụ như file kết quả phân tích than sinh học như sau. Giờ bạn muốn chuyển thông tin này qua Excel để thuận tiện tổng hợp dữ liệu, [nếu nhập thủ công thì mất time, do đó bạn sử dụng R để xử lý việc này một cách tự động.]{style=\"color: blue\"}\n\n![](table.png)\n\n{{< downloadthis Ndor942015AJEA19637.pdf >}} **Nguồn: [Researchgate](https://www.researchgate.net/publication/283187000_Effect_of_Biochar_Soil_Amendment_on_Soil_Properties_and_Yield_of_Sesame_Varieties_in_Lafia_Nigeria)**\n\n## Cách thực hiện\n\nVề bản chất thì chúng ta sử dụng package `pdftables` từ dịch vụ chuyên convert bảng trong PDF qua Excel ở trang web `https://pdftables.com/` thông qua API (các bạn đăng ký tài khoản sẽ có API key free cho 50 trang, nếu xài hết thì tạo tài khoản email khác, vd 10minutemail để lấy thêm API.)\n\n\n::: {.cell}\n\n```{.r .cell-code}\nlibrary(pdftables)\n\nconvert_pdf('Ndor942015AJEA19637.pdf',            # <1> \n            output_file = NULL,                   # <1>\n            format = \"xlsx-single\",               # <1>\n            message = TRUE, api_key = \"key-api\")  # <2>\n\nget_remaining(\"key-api\")                          # <3>\n# [1] 41                                          # <3>\n```\n:::\n\n\n1.  Lệnh này dùng để convert file PDF qua Excel\n2.  Key API này bạn log in vào `www.pdftables.com` để lấy\n3.  Hiển thị số trang còn lại để sử dụng API\n\n## Kết quả\n\nSau khi chạy xong dòng lệnh trên thì thư mục project sẽ xuất hiện 1 file Excel chứa thông tin của file PDF đã convert. Bạn có thể xử lý tiếp để đạt được format mình quan tâm. [Như vậy nhờ `R` và package `pdftables` nên chúng ta đã tiết kiệm thời gian cho việc nhập dữ liệu dạng bảng từ PDF qua Excel.]{style=\"color: red\"}\n\n![](table2.png)\n\n## Sơ kết\n\nTrên đây là hướng dẫn convert table trong PDF qua Excel sử dụng R. Để học R bài bản từ A đến Z, thân mời Bạn tham gia <span style=\"color: green\">**khóa học \"HDSD R để xử lý dữ liệu\"**<span style=\"color: blue\"> **để có nền tảng vững chắc về R nhằm tự tay làm các câu chuyện dữ liệu của riêng mình!**\n\n[**ĐĂNG KÝ NGAY: `https://www.tuhocr.com/register`**]{style=\"color: blue\"}\n\n<img src=\"tuhocr.png\" width=\"20%\" height=\"20%\"/>\n",
+    "supporting": [
+      "tablepdf_files"
+    ],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}
