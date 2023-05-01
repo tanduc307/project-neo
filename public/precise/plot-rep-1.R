@@ -16,11 +16,11 @@ z <- ready_data(input_data = rice_country, ty_le = 1000000)
 #################
 
 produce_image_fixed(input_data = z,
-                    file_name = "128-fixed-1")
+                    file_name = "rice_country_all")
 
 ####
-produce_image(input_data = z,
-              file_name = "p77")
+produce_image(input_data = z[1:10, ],
+              file_name = "rice_country_top_10")
 
 
 #################################
