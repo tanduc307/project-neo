@@ -53,11 +53,3 @@ Trên đây là hướng dẫn convert table trong PDF qua Excel sử dụng R. 
 [**ĐĂNG KÝ NGAY: `https://www.tuhocr.com/register`**]{style="color: blue"}
 
 <img src="tuhocr.png" width="20%" height="20%"/>
-
-
-
-
-
-
-
-
