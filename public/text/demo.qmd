@@ -1,0 +1,33 @@
+---
+title: "Quarto- Minimal Working Example"
+format: 
+  html:
+    theme: [cosmo, styles.scss]
+    # highlight-style: dracula
+    code-annotations: below
+---
+
+I'm looking to change the background colour of the code-annotation's hover popup inside a code block. 
+Currently it inherits the main body's background colour. 
+
+```{.bash filename="Terminal"}
+quarto --version # <1>
+```
+
+1. Checks quarto version
+
+```{r, eval=FALSE}
+library(pdftables)
+
+convert_pdf('Ndor942015AJEA19637.pdf',            # <1> 
+            output_file = NULL,                   # <1>
+            format = "xlsx-single",               # <1>
+            message = TRUE, api_key = "key-api")  # <2>
+
+get_remaining("key-api")                          # <3>
+# [1] 41                                          # <3>
+```
+
+1. Lệnh này dùng để convert file PDF qua Excel
+2. Key API này bạn log in vào www.pdftables.com để lấy
+3. Hiển thị số trang còn lại để sử dụng API
