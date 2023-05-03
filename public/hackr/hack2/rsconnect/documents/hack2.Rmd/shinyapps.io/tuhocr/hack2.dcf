@@ -1,0 +1,13 @@
+name: hack2
+title: hack2
+username:
+account: tuhocr
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 9016026
+bundleId: 7167638
+url: https://tuhocr.shinyapps.io/hack2/
+when: 1683100305.57615
+lastSyncTime: 1683100305.57617
+asMultiple: FALSE
+asStatic: FALSE
