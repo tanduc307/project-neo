@@ -5,9 +5,9 @@ account: tuhocr
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 9016026
-bundleId: 7167638
+bundleId: 7174157
 url: https://tuhocr.shinyapps.io/hack2/
-when: 1683100305.57615
-lastSyncTime: 1683100305.57617
+when: 1683212563.70887
+lastSyncTime: 1683212563.70889
 asMultiple: FALSE
 asStatic: FALSE
