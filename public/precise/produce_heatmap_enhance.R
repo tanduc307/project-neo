@@ -33,7 +33,7 @@ produce_image_fixed <- function(input_data, file_name = "128-fixed") {
     plot.matrix:::plot.matrix(input_data,
                               las = 1,
                               key = list(side = 4, font = 2),
-                              col = c("#00ffff", hsv(0.1, seq(0.15, 1, length.out = 9), 1), "#ff685d", "#ff4e41", "#ff3122"),
+                              col = c("#00ffff", hsv(0.1, seq(0.15, 1, length.out = 8), 1), "#ff685d", "#ff4e41", "#ff3122"),
                               na.col = "grey",
                               main = "",
                               axis.row = list(side = 2, font = 2, tick = FALSE),
@@ -95,7 +95,7 @@ produce_image_fixed <- function(input_data, file_name = "128-fixed") {
     plot.matrix:::plot.matrix(input_data,
                               las = 1,
                               key = list(side = 4, font = 2),
-                              col = c("#00ffff", hsv(0.1, seq(0.15, 1, length.out = 9), 1), "#ff685d", "#ff4e41", "#ff3122"),
+                              col = c("#00ffff", hsv(0.1, seq(0.15, 1, length.out = 8), 1), "#ff685d", "#ff4e41", "#ff3122"),
                               na.col = "grey",
                               main = "",
                               axis.row = list(side = 2, font = 2, tick = FALSE),
@@ -146,7 +146,7 @@ produce_image <- function(input_data,
                                                  length.out = 9), digits = -2)),
                           don_vi = "...",
                           tua_de,
-                          scale_color = c("#00ffff", hsv(0.1, seq(0.15, 1, length.out = 9), 1), "#ff685d", "#ff4e41", "#ff3122")
+                          scale_color = c("#00ffff", hsv(0.1, seq(0.15, 1, length.out = 8), 1), "#ff685d", "#ff4e41", "#ff3122")
                           ) {
     
     library(plot.matrix)

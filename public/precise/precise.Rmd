@@ -96,7 +96,7 @@ produce_image(input_data = z,
               file_name = "coffee_country_all",
               don_vi = "Đơn vị: \nnghìn tấn",
               tua_de = "Các quốc gia sản xuất cà phê trên thế giới (1961–2021) | Nguồn: FAOSTAT | Đồ họa: tuhocr.com",
-              scale_color = c("#00ffff", hsv(0.15, seq(0.1, 0.9, length.out = 7), 1), 
+              scale_color = c("#00ffff", hsv(0.15, seq(0.1, 0.9, length.out = 6), 1), 
                               "#ffd966", "#f1c232", "#e69138", "#b45f06", "#783f04"))
 
 knitr::include_graphics("coffee_country_all.png")
@@ -117,11 +117,11 @@ produce_image(input_data = z,
               file_name = "piper_country_all",
               don_vi = "Đơn vị: \nnghìn tấn",
               tua_de = "Các quốc gia sản xuất hồ tiêu trên thế giới (1961–2021) | Nguồn: FAOSTAT | Đồ họa: tuhocr.com",
-              scale_color = c("#00ffff", hsv(0.25, seq(0.1, 0.9, length.out = 7), 1), 
+              scale_color = c("#00ffff", hsv(0.25, seq(0.1, 0.9, length.out = 6), 1), 
                               "#93c47d", "#6aa84f", "#38761d", "#274e13", "#1b360d"),
               thang_do = c(0, 0.000000001, 1, 10, 
                                        round(seq(from = 100, 
-                                                 to = round(range(z, na.rm = TRUE)[2]*1.2, digits = -1),
+                                                 to = round(range(z, na.rm = TRUE)[2]*1.2, digits = -2),
                                                  length.out = 9), digits = 0))) ## chủ động thay đổi thang đo heatmap
 
 knitr::include_graphics("piper_country_all.png")
@@ -142,10 +142,12 @@ produce_image(input_data = z,
               file_name = "chilly_dry_country_all",
               don_vi = "Đơn vị: \nnghìn tấn",
               tua_de = "Các quốc gia sản xuất ớt (khô) trên thế giới (1961–2021) | Nguồn: FAOSTAT | Đồ họa: tuhocr.com",
-              thang_do = c(0, 0.000000001, 1, 10, 
-                                       round(seq(from = 100, 
-                                                 to = round(range(z, na.rm = TRUE)[2]*1.2, digits = -2),
-                                                 length.out = 9), digits = 0))) ## chủ động thay đổi thang đo heatmap
+              scale_color = c("#00ffff", hsv(0.55, seq(0.1, 0.9, length.out = 9), 1), 
+                              "#3c5ab6", "#2748ae"),
+              thang_do = c(0, 0.000000001, 1, 100, 
+                                       round(seq(from = 1000, 
+                                                 to = round(range(z, na.rm = TRUE)[2]*1.1, digits = -2),
+                                                 length.out = 9), digits = -2))) ## chủ động thay đổi thang đo heatmap
 
 knitr::include_graphics("chilly_dry_country_all.png")
 ```
@@ -165,10 +167,10 @@ produce_image(input_data = z,
               file_name = "coconut_country_all",
               don_vi = "Đơn vị: \nnghìn tấn",
               tua_de = "Các quốc gia sản xuất vỏ dừa khô trên thế giới (1961–2021) | Nguồn: FAOSTAT | Đồ họa: tuhocr.com",
-              thang_do = c(0, 0.000000001, 1, 10, 
-                                       round(seq(from = 100, 
-                                                 to = round(range(z, na.rm = TRUE)[2]*1.2, digits = -2),
-                                                 length.out = 9), digits = 0))) ## chủ động thay đổi thang đo heatmap
+              thang_do = c(0, 0.000000001, 1, 100, 
+                                       round(seq(from = 1000, 
+                                                 to = round(range(z, na.rm = TRUE)[2]*1.2, digits = -4),
+                                                 length.out = 9), digits = -3))) ## chủ động thay đổi thang đo heatmap
 
 knitr::include_graphics("coconut_country_all.png")
 ```
