@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='ISO-8859-1' ?>
+
+<picture version='3' xmlns:rgml='http://r-project.org/RGML' source='ru.ps' date='2023-05-12 18:59:12' creator='R (4.2.3)' >
+
+<path type='eofill' id='1'>
+	<context>
+		<rgb r='1.0' g='1.0' b='1.0'/>
+		<style lwd='10.0' lty='' lineend='0' linemitre='10.0' linejoin='0'/>
+	</context>
+
+	<move y='3610.0' x='0.0'/>
+	<line y='3610.0' x='4800.0'/>
+	<line y='10.0' x='4800.0'/>
+	<line y='10.0' x='0.0'/>
+	<line y='3610.0' x='0.0'/>
+</path>
+
+<path type='eofill' id='2'>
+	<context>
+		<rgb r='0.0' g='0.223529' b='0.65098'/>
+		<style lwd='10.0' lty='' lineend='0' linemitre='10.0' linejoin='0'/>
+	</context>
+
+	<move y='2410.0' x='0.0'/>
+	<line y='2410.0' x='4800.0'/>
+	<line y='10.0' x='4800.0'/>
+	<line y='10.0' x='0.0'/>
+	<line y='2410.0' x='0.0'/>
+</path>
+
+<path type='eofill' id='3'>
+	<context>
+		<rgb r='0.835294' g='0.168627' b='0.117647'/>
+		<style lwd='10.0' lty='' lineend='0' linemitre='10.0' linejoin='0'/>
+	</context>
+
+	<move y='1210.0' x='0.0'/>
+	<line y='1210.0' x='4800.0'/>
+	<line y='10.0' x='4800.0'/>
+	<line y='10.0' x='0.0'/>
+	<line y='1210.0' x='0.0'/>
+</path>
+
+<summary count='3' ymax='3610.0' ymin='10.0' xmax='4800.0' xmin='0.0'/>
+
+</picture>

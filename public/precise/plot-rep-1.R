@@ -16,7 +16,7 @@ z <- ready_data(input_data = rice_country, ty_le = 1000000)
 #################
 
 produce_image_fixed(input_data = z,
-                    file_name = "rice_country_all")
+                    file_name = "rice_country_128")
 
 ####
 produce_image(input_data = z[1:10, ],
@@ -38,13 +38,18 @@ z <- ready_data(input_data = coffee_country, ty_le = 1000)
 ############## BAO GỒM CẢ SCALE MÀU
 
 
+produce_image(input_data = z,
+              file_name = "coffee_country_v9",
+              don_vi = "Đơn vị: \nnghìn tấn",
+              tua_de = "Các quốc gia sản xuất cà phê trên thế giới (1961–2021) | Nguồn: FAOSTAT | Đồ họa: tuhocr.com",
+              scale_color = c("#00ffff", hsv(0.15, seq(0.1, 0.9, length.out = 7), 1), 
+                              "#ffd966", "#f1c232", "#e69138", "#b45f06", "#783f04"))
 
 
 
 
 
-
-
+source(file = "produce_heatmap_enhance.R")
 
 
 
