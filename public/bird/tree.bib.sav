@@ -3,7 +3,7 @@
   publisher = {Wiley},
   title     = {Agricultural experimentation: Design and Analysis},
   year      = {1978},
-  file      = {thomas_1978_agricultural_experimentation_design_and_analysis.pdf:D\:\\GITHUB\\jabref\\thomas_1978_agricultural_experimentation_design_and_analysis.pdf:application/pdf},
+  file      = {thomas_1978_agricultural_experimentation_design_and_analysis.pdf:D\:/GITHUB/jabref/thomas_1978_agricultural_experimentation_design_and_analysis.pdf:PDF},
   groups    = {stat},
   image     = {https://studyr.netlify.app/ref/thomas_1978_agricultural_experimentation_design_and_analysis.png},
   url       = {https://ia804707.us.archive.org/0/items/thomas-m-1978-agricultural-experimentation/Thomas%20M%20-%201978%20-%20Agricultural%20experimentation.pdf},
@@ -16,15 +16,40 @@
   publisher = {Trường Đại học Cần Thơ},
   title     = {Giáo trình Thống kê - Phép thí nghiệm},
   year      = {2007},
-  file      = {pttt_2007_giao_trinh_thong_ke.pdf:D\:\\GITHUB\\jabref\\pttt_2007_giao_trinh_thong_ke.pdf:application/pdf},
+  file      = {pttt_2007_giao_trinh_thong_ke.pdf:D\:/GITHUB/jabref/pttt_2007_giao_trinh_thong_ke.pdf:PDF},
   groups    = {stat},
   url       = {https://studyr.netlify.app/ref/pttt_2007_giao_trinh_thong_ke_1_to_138.pdf},
   url_1     = {https://studyr.netlify.app/ref/pttt_2007_giao_trinh_thong_ke_139_to_276.pdf},
+}
+
+@InBook{pttt2007a,
+  author    = {Phan Thị Thanh Thủy},
+  chapter   = {Chương 10: Kiểm định Chi bình phương},
+  pages     = {184--191},
+  publisher = {Trường Đại học Cần Thơ},
+  title     = {Giáo trình Thống kê - Phép thí nghiệm},
+  year      = {2007},
+  file      = {pttt_2007_giao_trinh_thong_ke.pdf:D\:/GITHUB/jabref/pttt_2007_giao_trinh_thong_ke.pdf:PDF},
+  groups    = {stat, chi-squared-test},
+  url       = {https://studyr.netlify.app/ref/pttt_2007_giao_trinh_thong_ke_139_to_276.pdf#page=56},
+  url_1     = {https://studyr.netlify.app/ref/pttt_2007_giao_trinh_thong_ke_139_to_276.pdf},
+}
+
+@Book{crawley2015,
+  author    = {Crawley, Michael J.},
+  publisher = {Wiley},
+  title     = {Statistics - An Introduction in R (2nd edition)},
+  year      = {2015},
+  edition   = {2},
+  file      = {crawley_2015_statistics_an_introduction_in_r_2nd_edition.pdf:D\:/GITHUB/project-neo/public/ref/crawley_2015_statistics_an_introduction_in_r_2nd_edition.pdf:PDF},
+  groups    = {stat},
+  url       = {https://studyr.netlify.app/ref/crawley_2015_statistics_an_introduction_in_r_2nd_edition.pdf},
 }
 
 @Comment{jabref-meta: databaseType:bibtex;}
 
 @Comment{jabref-meta: grouping:
 0 AllEntriesGroup:;
+1 StaticGroup:chi-squared-test\;0\;1\;0x008000ff\;\;\;;
 1 StaticGroup:stat\;0\;0\;0x0000ffff\;\;\;;
 }
