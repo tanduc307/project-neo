@@ -1,0 +1,25 @@
+TY  - JOUR
+AU  - Leng, Lijian
+AU  - Yang, Lihong
+AU  - Lei, Xinni
+AU  - Zhang, Weijin
+AU  - Ai, Zejian
+AU  - Yang, Zequn
+AU  - Zhan, Hao
+AU  - Yang, Jianping
+AU  - Yuan, Xingzhong
+AU  - Peng, Haoyi
+AU  - Li, Hailong
+PY  - 2022
+DA  - 2022/11/29
+TI  - Machine learning predicting and engineering the yield, N content, and specific surface area of biochar derived from pyrolysis of biomass
+JO  - Biochar
+SP  - 63
+VL  - 4
+IS  - 1
+AB  - Biochar produced from pyrolysis of biomass has been developed as a platform carbonaceous material that can be used in various applications. The specific surface area (SSA) and functionalities such as N-containing functional groups of biochar are the most significant properties determining the application performance of biochar as a carbon material in various areas, such as removal of pollutants, adsorption of CO2 and H2, catalysis, and energy storage. Producing biochar with preferable SSA and N functional groups is among the frontiers to engineer biochar materials. This study attempted to build machine learning models to predict and optimize specific surface area of biochar (SSA-char), N content of biochar (N-char), and yield of biochar (Yield-char) individually or simultaneously, by using elemental, proximate, and biochemical compositions of biomass and pyrolysis conditions as input variables. The  predictions of Yield-char, N-char, and SSA-char were compared by using random forest (RF) and gradient boosting regression (GBR) models. GBR outperformed RF for most predictions. When input parameters included elemental and proximate compositions as well as pyrolysis conditions, the test R2 values for the single-target and multi-target GBR models were 0.90–0.95 except  for  the two-target prediction of Yield-char and SSA-char which had a test R2 of 0.84 and the three-target prediction model which had a test R2 of 0.81. As indicated by the Pearson correlation coefficient between variables and the feature importance of these GBR models, the top influencing factors toward predicting three targets were specified as follows: pyrolysis temperature, residence time, and fixed carbon for Yield-char; N and ash for N-char; ash and pyrolysis temperature for SSA-char. The effects of these parameters on three targets were different, but the trade-offs of these three were balanced during multi-target ML prediction and optimization. The optimum solutions were then experimentally verified, which opens a new way for designing smart biochar with target properties and oriented application potential.
+SN  - 2524-7867
+UR  - https://doi.org/10.1007/s42773-022-00183-w
+DO  - 10.1007/s42773-022-00183-w
+ID  - Leng2022
+ER  - 

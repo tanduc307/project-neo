@@ -1,0 +1,25 @@
+TY  - JOUR
+AU  - Fan, Yuxing
+AU  - Xiong, Yingying
+AU  - Zhang, Yingying
+AU  - Jiang, Zhangsong
+AU  - Tang, Haihui
+AU  - Wu, Ligui
+AU  - Li, Mi
+AU  - Xiao, Xiaoyu
+AU  - Hu, Cui
+AU  - Zou, Xiaoming
+PY  - 2021
+DA  - 2021/12/01
+TI  - Method to characterize color of biochar and its prediction with biochar yield as model property
+JO  - Biochar
+SP  - 687
+EP  - 699
+VL  - 3
+IS  - 4
+AB  - Biochar has trigged increasing attention in the last decade due to its multiple functionalities, in which, color is not only the visual appearance, but also a useful indicator of relevant properties as well as an important tool to predict biochar’s properties. However, biochar color characterization remains challenged currently. In this work, three different feedstock-derived biochars were produced and basic color information (from color spaces RGB, HSB and CIE L*a*b*) of their scanned images was extracted. Then principal component analysis (PCA) and nonmetric multidimensional scaling analysis (NMDS) were employed on the combinations of different color indexes to cluster biochars. With the assumption that clusters from both PCA and NMDS were as consistent as possible with that of visual intuition of biochar color, we identified feedstock-independent color indexes [(R + G-B)/(R + G + B), (R + B-G)/(R + G + B), (G + B-R)/(R + G + B), L, a, b] to characterize color of biochar, which can in microscopic perspective elucidate color differences with respect to pyrolysis temperature and feedstock type. Finally, prediction ability of color indexes with biochar yield as model property was explored and good performance was observed for both partial least squares regression (R2 = 0.8653) and neural network regression (R2 = 0.9720) with the latter being more powerful. The proposed color indexes will find more applications in prediction of biochar properties and functions in future.
+SN  - 2524-7867
+UR  - https://doi.org/10.1007/s42773-021-00119-w
+DO  - 10.1007/s42773-021-00119-w
+ID  - Fan2021
+ER  - 

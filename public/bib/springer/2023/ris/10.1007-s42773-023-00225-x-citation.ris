@@ -1,0 +1,23 @@
+TY  - JOUR
+AU  - Zhang, Wentao
+AU  - Chen, Ronghua
+AU  - Li, Jie
+AU  - Huang, Tianyin
+AU  - Wu, Bingdang
+AU  - Ma, Jun
+AU  - Wen, Qingqi
+AU  - Tan, Jie
+AU  - Huang, Wenguang
+PY  - 2023
+DA  - 2023/04/23
+TI  - Synthesis optimization and adsorption modeling of biochar for pollutant removal via machine learning
+JO  - Biochar
+SP  - 25
+VL  - 5
+IS  - 1
+AB  - Due to large specific surface area, abundant functional groups and low cost, biochar is widely used for pollutant removal. The adsorption performance of biochar is related to biochar synthesis and adsorption parameters. But the influence factor is numerous, the traditional experimental enumeration is powerless. In recent years, machine learning has been gradually employed for biochar, but there is no comprehensive review on the whole process regulation of biochar adsorbents, covering synthesis optimization and adsorption modeling. This review article systematically summarized the application of machine learning in biochar adsorbents from the perspective of all-round regulation for the first time, including the synthesis optimization and adsorption modeling of biochar adsorbents. Firstly, the overview of machine learning was introduced. Then, the latest advances of machine learning in biochar synthesis for pollutant removal were summarized, including prediction of biochar yield and physicochemical properties, optimal synthetic conditions and economic cost. And the application of machine learning in pollutant adsorption by biochar was reviewed, covering prediction of adsorption efficiency, optimization of experimental conditions and revelation of adsorption mechanism. General guidelines for the application of machine learning in whole-process optimization of biochar from synthesis to adsorption were presented. Finally, the existing problems and future perspectives of machine learning for biochar adsorbents were put forward. We hope that this review can promote the integration of machine learning and biochar, and thus light up the industrialization of biochar.
+SN  - 2524-7867
+UR  - https://doi.org/10.1007/s42773-023-00225-x
+DO  - 10.1007/s42773-023-00225-x
+ID  - Zhang2023
+ER  - 

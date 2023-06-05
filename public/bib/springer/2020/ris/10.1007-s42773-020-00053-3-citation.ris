@@ -1,0 +1,20 @@
+TY  - JOUR
+AU  - Thomas, Evert
+AU  - Borchard, Nils
+AU  - Sarmiento, Christian
+AU  - Atkinson, Rachel
+AU  - Ladd, Brenton
+PY  - 2020
+DA  - 2020/06/01
+TI  - Key factors determining biochar sorption capacity for metal contaminants: a literature synthesis
+JO  - Biochar
+SP  - 151
+EP  - 163
+VL  - 2
+IS  - 2
+AB  - The sorption capacity and affinity of biochar for metals are both important attributes that determine biochar’s suitability as a soil amendment for contaminant mitigation, yet few analyses have considered both characteristics simultaneously. We present a systematic review of literature published between 2010 and 2018 to test the hypothesis that sorption capacity and affinity are affected by biochar properties, attributes of the metal contaminant, and experimental conditions, in that order. We used random forest (RF) and multi-objective optimization to analyze data of 559 individual Langmuir adsorption isotherms extracted from 133 studies covering the sorption capacity (Cmax) and affinity (KL) of biochar for 17 different metals, elaborated from six different feedstock classes, three different types of feedstock pretreatment, and five types of post-pyrolysis treatment. Highest sorption values were obtained for Pb(II), Cr(IV), and Cd(II). The feedstock used was the key determinant influencing biochar’s capacity and affinity to sorb metal contaminants (first and fourth most important variable in RF models for Cmax and KL, respectively) with best results obtained for biochar elaborated from nutrient-dense feedstocks (animal biowaste, sludge, and manure). Biochars that had both high sorption capacity and affinity were the result of a longer duration of pyrolysis; they had lower C and higher N and O content, as well as lower C/N and higher O/C and H/C ratios, higher pore volumes and higher pH. Applying some form of pretreatment was better than none, whereas chemical modification was the best of the post-treatment methods analyzed. This review demonstrates clearly that multiple parameters during the preparation process influence the effectiveness of biochar to immobilize metal contaminants. Future research that focuses on mechanisms and the underlying factors for the correlations observed should allow the development of biochar formulations that are even more effective at immobilizing metal contaminants in soils and sediments.
+SN  - 2524-7867
+UR  - https://doi.org/10.1007/s42773-020-00053-3
+DO  - 10.1007/s42773-020-00053-3
+ID  - Thomas2020
+ER  - 
