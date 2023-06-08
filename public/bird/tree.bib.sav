@@ -46,10 +46,24 @@
   url       = {https://studyr.netlify.app/ref/crawley_2015_statistics_an_introduction_in_r_2nd_edition.pdf},
 }
 
+@Misc{gong2020,
+  author    = {Byoung-gyu Gong},
+  title     = {Network Analysis: Theory and Concept | Practice Using igraph and Gephi},
+  year      = {2020},
+  file      = {:E\:/data/Network Analysis (1) Theory and Concept.mp4:mp4;:E\:/data/Network Analysis (2) Practice Using igraph and Gephi.mp4:mp4},
+  groups    = {network-analysis},
+  keywords  = {network analysis, igraph, gephi},
+  timestamp = {2023-06-08},
+  url       = {https://youtu.be/o5-o1EPSWZg},
+}
+
 @Comment{jabref-meta: databaseType:bibtex;}
+
+@Comment{jabref-meta: fileDirectoryLatex-netal-DESKTOP-1G2N1BQ:D:\\GITHUB\\project-neo\\public\\bird\\latex;}
 
 @Comment{jabref-meta: grouping:
 0 AllEntriesGroup:;
 1 StaticGroup:chi-squared-test\;0\;1\;0x008000ff\;\;\;;
+1 StaticGroup:network-analysis\;0\;1\;0xff0000ff\;\;\;;
 1 StaticGroup:stat\;0\;0\;0x0000ffff\;\;\;;
 }
