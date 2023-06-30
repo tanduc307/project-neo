@@ -1,0 +1,105 @@
+<html> <head>
+<title>APAish JabRef Export Filter</title>
+</head>
+<body>
+<h1>APAish export filter for JabRef</h1>
+
+<p>
+<a href="http://jabref.sourceforge.net">JabRef</a> is an very nice
+program for managing bibtex bibliography databases.  In addition to
+its use for managing and editing the .bib file, it also contains a
+number of export filters that can export the bibliography in a variety
+of styles.  The export filter language
+is <a href="http://jabref.sourceforge.net/help/CustomExports.php">extensible</a>,
+so that new styles can be added.
+</p><p>
+APAish represents my first effort at an export filter that follows the
+American Pychological Association (APA) guidelines, which are used by
+many journal and conference in the field of education.  It exports the
+references in Rich Text Format (rtf) which is understood by a large
+variety of text editors (including Microsoft Word).
+</p><p>
+Actually, my long term goal is really to produce an export filter that
+is compatable with Erik Meijer's excellent bibtex
+style <a href="http://www.ctan.org/tex-archive/biblio/bibtex/contrib/apacite/">apacite</a>.
+In particular, the goal is to have the RTF export filter look very
+close to the pdf generated when the bibliography is formatted with
+bibtex and apacite.  There are still things to be done to reach that goal.
+</p>
+<h2>Installation Instructions</h2>
+
+This assume that you have downloaded and installed JabRef from
+sourceforge.  I have tested APAish with JabRef 2.5b1, so it should
+work with that version and later (and possibly with earlier versions).
+
+<nl>
+<li> Download <a href="APAish.zip">APAish.zip</a> to a place where you
+  will remember it.
+<li> Open JabRef and select the menu item <code>Options > Manage
+    Custom Exports</code>
+<li> In the dialog box that appears, press the <i>New</i> button.
+<li> Fill out the dialog, in the middle box put the path to the
+  APAish.layout file in the directory you just unziped.  The last box
+  should contain <code>.rtf</code>.  The result should look something
+  like this.
+<p><img src="APAish.png" alt="Screenshot of add export filter dialog"></p>
+<li> Select the database you want to export and select <code>File >
+    Export</code> from the menu.  APAish should now appear as one of
+    the choices.
+</nl>
+
+<h2>Release Notes</h2>
+<p>
+This is version 0.2, an early beta release of APAish.  There are a
+number of known issues, some of which are related to missing features
+in JabRef (I've posted a couple of feature requests, I may try to add
+them myself later if I get time).  At any rate here are a few extra
+and missing features.
+</p>
+<ul>
+<li> APAish supports the <code>lastchecked</code> and <code>url</code>
+  optional bibtex fields, adding a line of the
+  form <code>Retrieved <i>lastchecked</i> from <i>url</i>.</code> to
+  the entry if <code>url</code> is present.
+<li> APAish supports the <code>doi</code> field for articles and
+  the <code>isbn</code> field for books.
+<li> APAish does not support the <code>address</code> field for the
+  publisher of books.  <code>&lt;flame&gt;</code>Adding the physical
+  address of a publisher to a bibliography entry is an antemillenial
+  practice that wastes valuable space in the
+  paper.<code>&lt;/flame&gt;</code>
+<li> APAish does not convert the TeX ligatures '---' and '--' to
+  em-dashes and en-dashes.  [This is missing functionality in
+  the <code>RTFChars</code> filter in JabRef.]  It also does not
+  conver a single dash in a pages entry to an en-dash the way bibtex
+  does. 
+<li> APAish does not distinguish between single editors and multiple
+  editors (both are labeled <code>(ed.)</code>).  [I think a new kind
+  of filter is needed in JabRef to accomplish this.]  It also
+  use <code>pp.</code> when there is only a single page.
+<li> The apacite package will add default values for
+  the <code>type</code> field when not supplied by the entry.  APAish
+  does not do this.  [Again, I think a new kind of filter is needed to
+  support this.]
+<li> APAish does not yet
+  support <code>magazine</code>, <code>newspaper</code>, <code>lecture</code>
+  or <code>intechreport</code> entry types.  The default layout will
+  probably not work very well for these
+  types. The <code>misc</code>, <code>booklet</code>, <code>manual</code>, 
+  <code>unpublished</code>
+  and <code>proceedings</code> types also do not have custom filters,
+  but should work reasonably well with the default filter.
+</ul>
+<p>I would like to hear about any problems that are not noted above.
+  Patches are also welcome.</p>
+
+<hr>
+APAish is derived from the Harvard RTF export feature of JabRef and is
+available for free distribution under the same terms as JabRef.
+
+<address>almond@acm.org</address><p>
+
+<!-- hhmts start -->
+Last modified: Sat Sep 26, 2009
+<!-- hhmts end -->
+</body> </html>
