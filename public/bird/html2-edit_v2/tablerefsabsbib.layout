@@ -2,16 +2,18 @@
     <td><img src="\format[WrapFileLinks(\p)]{\image}" width="100" height="150"/></td>
 	<td>\format[Authors(LastFirst,InitialsNoSpace),HTMLChars]{\author}</td>
 	<td>\format[HTMLChars]{\title} <p class="infolinks">\begin{abstract}[<a href="javascript:toggleInfo('\format{\bibtexkey}','abstract')">Abstract</a>] \end{abstract}\begin{review}[<a href="javascript:toggleInfo('\format{\bibtexkey}','review')">Review</a>] \end{review}[<a href="javascript:toggleInfo('\format{\bibtexkey}','bibtex')">BibTeX</a>]</p></td>
-	<td>\chapter</td>
+	<td>\citationkey</td>
 	<td>\year</td>
 	<td>\format[HTMLChars]{\journal}\begin{volume}<br/>Vol. \volume\end{volume}
 	    \begin{number}(\format[FormatPagesForHTML]{\number})\end{number}
 		\format[HTMLChars]{\booktitle}\begin{pages}, pp. \format[FormatPagesForHTML]{\pages}\end{pages}
 		\begin{school}<i>School</i>: \format[HTMLChars]{\school}\end{school}
 		\begin{howpublished}\format[HTMLChars]{\howpublished}\end{howpublished}&nbsp;</td>
-	<td>\format[ToLowerCase]{\bibtextype}</td>
-	<td>\begin{url}<a href="\format{\url}">[URL]</a>\end{url}
-	\begin{url_1}<a href="\format{\url_1}">[URL_1]</a>\end{url_1}&nbsp;</td>
+	<td>\begin{citationkey}\format[HTMLChars]{\citationkey}\end{citationkey}<br>
+	\begin{bibtextype}\format[ToLowerCase]{\bibtextype}\end{bibtextype}</td>
+	<td>\begin{url}<a href="\format{\url}">[URL]</a>\end{url}<br>
+	\begin{url_1}<a href="\format{\url_1}">[URL_1]</a>\end{url_1}<br>
+	\begin{url_2}<a href="\format{\url_2}">[URL_2]</a>\end{url_2}</td>
 </tr>\begin{abstract}
 <tr id="abs_\format{\bibtexkey}" class="abstract noshow">
 	<td colspan="8"><b>Abstract</b>: \format[HTMLChars]{\abstract}</td>
@@ -36,7 +38,8 @@
   edition = {\format[HTMLChars]{\edition}}\end{edition}\begin{note},
   note = {\format[HTMLChars]{\note}}\end{note}\begin{url},
   url = {\format[HTMLChars]{\url}}\end{url}\begin{url_1},
-  url_1 = {\format[HTMLChars]{\url_1}}\end{url_1}
+  url_1 = {\format[HTMLChars]{\url_1}}\end{url_1}\begin{url_2},
+  url_2 = {\format[HTMLChars]{\url_2}}\end{url_2}
 }
 </pre></td>
 </tr>
