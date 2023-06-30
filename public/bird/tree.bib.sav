@@ -18,6 +18,7 @@
   year      = {2007},
   file      = {pttt_2007_giao_trinh_thong_ke.pdf:D\:/GITHUB/jabref/pttt_2007_giao_trinh_thong_ke.pdf:PDF},
   groups    = {stat},
+  image     = {https://studyr.netlify.app/ref/pttt_2007_giao_trinh_thong_ke.png},
   url       = {https://studyr.netlify.app/ref/pttt_2007_giao_trinh_thong_ke_1_to_138.pdf},
   url_1     = {https://studyr.netlify.app/ref/pttt_2007_giao_trinh_thong_ke_139_to_276.pdf},
 }
@@ -31,6 +32,7 @@
   year      = {2007},
   file      = {pttt_2007_giao_trinh_thong_ke.pdf:D\:/GITHUB/jabref/pttt_2007_giao_trinh_thong_ke.pdf:PDF},
   groups    = {stat, chi-squared-test},
+  image     = {https://studyr.netlify.app/ref/pttt_2007_giao_trinh_thong_ke_chuong_10.png},
   url       = {https://studyr.netlify.app/ref/pttt_2007_giao_trinh_thong_ke_139_to_276.pdf#page=56},
   url_1     = {https://studyr.netlify.app/ref/pttt_2007_giao_trinh_thong_ke_139_to_276.pdf},
 }
@@ -43,6 +45,7 @@
   edition   = {2},
   file      = {crawley_2015_statistics_an_introduction_in_r_2nd_edition.pdf:D\:/GITHUB/project-neo/public/ref/crawley_2015_statistics_an_introduction_in_r_2nd_edition.pdf:PDF},
   groups    = {stat},
+  image     = {https://studyr.netlify.app/ref/crawley_2015_statistics_an_introduction_in_r_2nd_edition.png},
   url       = {https://studyr.netlify.app/ref/crawley_2015_statistics_an_introduction_in_r_2nd_edition.pdf},
 }
 
@@ -52,9 +55,11 @@
   year      = {2020},
   file      = {:D\:/data/Network Analysis (1) Theory and Concept.mp4:mp4;:D\:/data/Network Analysis (2) Practice Using igraph and Gephi.mp4:mp4},
   groups    = {network-analysis},
+  image     = {https://studyr.netlify.app/ref/network.png},
   keywords  = {network analysis, igraph, gephi},
   timestamp = {2023-06-08},
   url       = {https://youtu.be/o5-o1EPSWZg},
+  url_1     = {https://studyr.netlify.app/ref/vCIES2020_Network-Analysis-master.zi},
 }
 
 @Book{le2003,
@@ -65,6 +70,7 @@
   edition   = {1},
   file      = {:D\:/GITHUB/project-neo/public/ref/introductory_biostatistics_2003.pdf:PDF},
   groups    = {stat},
+  image     = {https://studyr.netlify.app/ref/introductory_biostatistics_2003.png},
   url       = {https://studyr.netlify.app/ref/introductory_biostatistics_2003.pdf},
 }
 
@@ -76,8 +82,21 @@
   edition   = {2},
   file      = {:D\:/GITHUB/project-neo/public/ref/introductory_biostatistics_2016.pdf:PDF},
   groups    = {stat},
+  image     = {https://studyr.netlify.app/ref/introductory_biostatistics_2016.png},
   url       = {https://studyr.netlify.app/ref/introductory_biostatistics_2016.pdf},
   url_1     = {https://studyr.netlify.app/ref/introductory_biostatistics_2016_dataset.zip},
+}
+
+@Book{lock2020,
+  author    = {Lock, R.H. and Lock, P.F. and Morgan, K.L. and Lock, E.F. and Lock, D.F.},
+  publisher = {Wiley},
+  title     = {Statistics: Unlocking the Power of Data},
+  year      = {2020},
+  edition   = {3},
+  file      = {:D\:/GITHUB/project-neo/public/ref/statistics_unlocking_the_power_of_data_2020.pdf:PDF},
+  groups    = {stat},
+  image     = {https://studyr.netlify.app/ref/statistics_unlocking_the_power_of_data_2020.png},
+  url       = {https://studyr.netlify.app/ref/statistics_unlocking_the_power_of_data_2020.pdf},
 }
 
 @Comment{jabref-meta: databaseType:bibtex;}
