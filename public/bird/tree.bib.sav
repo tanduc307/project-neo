@@ -59,7 +59,7 @@
   keywords  = {network analysis, igraph, gephi},
   timestamp = {2023-06-08},
   url       = {https://youtu.be/o5-o1EPSWZg},
-  url_1     = {https://studyr.netlify.app/ref/vCIES2020_Network-Analysis-master.zi},
+  url_1     = {https://studyr.netlify.app/ref/vCIES2020_Network-Analysis-master.zip},
 }
 
 @Book{le2003,
@@ -93,6 +93,17 @@
   title     = {Statistics: Unlocking the Power of Data},
   year      = {2020},
   edition   = {3},
+  file      = {:D\:/GITHUB/project-neo/public/ref/statistics_unlocking_the_power_of_data_2020.pdf:PDF},
+  groups    = {stat},
+  image     = {https://studyr.netlify.app/ref/statistics_unlocking_the_power_of_data_2020.png},
+  url       = {https://studyr.netlify.app/ref/statistics_unlocking_the_power_of_data_2020.pdf},
+}
+
+@Book{kassambara2017,
+  author    = {Alboukadel Kassambara},
+  publisher = {STHDA},
+  title     = {Practical Guide to Principal Component Methods in R},
+  year      = {2017},
   file      = {:D\:/GITHUB/project-neo/public/ref/statistics_unlocking_the_power_of_data_2020.pdf:PDF},
   groups    = {stat},
   image     = {https://studyr.netlify.app/ref/statistics_unlocking_the_power_of_data_2020.png},
