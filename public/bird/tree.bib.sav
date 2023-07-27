@@ -104,10 +104,22 @@
   publisher = {STHDA},
   title     = {Practical Guide to Principal Component Methods in R},
   year      = {2017},
-  file      = {:D\:/GITHUB/project-neo/public/ref/statistics_unlocking_the_power_of_data_2020.pdf:PDF},
+  file      = {:D\:/GITHUB/project-neo/public/ref/kassambara_principal_component_methods.pdf:PDF},
   groups    = {stat},
-  image     = {https://studyr.netlify.app/ref/statistics_unlocking_the_power_of_data_2020.png},
-  url       = {https://studyr.netlify.app/ref/statistics_unlocking_the_power_of_data_2020.pdf},
+  image     = {https://studyr.netlify.app/ref/kassambara_principal_component_methods.png},
+  url       = {https://studyr.netlify.app/ref/kassambara_principal_component_methods.pdf},
+}
+
+@Book{wickham2016,
+  author    = {Hadley Wickham},
+  publisher = {Springer},
+  title     = {ggplot2},
+  year      = {2016},
+  edition   = {2},
+  file      = {:D\:/GITHUB/project-neo/public/ref/hadley_2016_ggplot2.pdf:PDF},
+  groups    = {dataviz},
+  image     = {https://studyr.netlify.app/ref/hadley_2016_ggplot2.png},
+  url       = {https://studyr.netlify.app/ref/hadley_2016_ggplot2.pdf},
 }
 
 @Comment{jabref-meta: databaseType:bibtex;}
@@ -117,6 +129,7 @@
 @Comment{jabref-meta: grouping:
 0 AllEntriesGroup:;
 1 StaticGroup:chi-squared-test\;0\;1\;0x008000ff\;\;\;;
+1 StaticGroup:dataviz\;0\;1\;0x8a8a8aff\;\;\;;
 1 StaticGroup:network-analysis\;0\;1\;0xff0000ff\;\;\;;
 1 StaticGroup:stat\;0\;0\;0x0000ffff\;\;\;;
 }
