@@ -116,10 +116,22 @@
   title     = {ggplot2},
   year      = {2016},
   edition   = {2},
-  file      = {:D\:/GITHUB/project-neo/public/ref/hadley_2016_ggplot2.pdf:PDF},
+  file      = {:D\:/GITHUB/project-neo/public/ref/wickham_2016_ggplot2.pdf:PDF},
   groups    = {dataviz},
-  image     = {https://studyr.netlify.app/ref/hadley_2016_ggplot2.png},
-  url       = {https://studyr.netlify.app/ref/hadley_2016_ggplot2.pdf},
+  image     = {https://studyr.netlify.app/ref/wickham_2016_ggplot2.png},
+  url       = {https://studyr.netlify.app/ref/wickham_2016_ggplot2.pdf},
+}
+
+@Book{mcelreath2020,
+  author    = {Richard McElreath},
+  publisher = {CRC Press},
+  title     = {Statistical Rethinking},
+  year      = {2020},
+  edition   = {2},
+  file      = {:D\:/GITHUB/project-bluebeam/public/ref/mcelreath_2020_statistical_rethinking.pdf:PDF},
+  groups    = {stat},
+  image     = {https://applyr.netlify.app/ref/mcelreath_2020_statistical_rethinking.png},
+  url       = {https://applyr.netlify.app/ref/mcelreath_2020_statistical_rethinking.pdf},
 }
 
 @Comment{jabref-meta: databaseType:bibtex;}
